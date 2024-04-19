@@ -11,11 +11,11 @@ Ben Russell (23355626)
 
 ## Installation
 
-<Inser guide on how to install the project including any dependencies>
+<insert guide on how to install the project including any dependencies>
 
 ## Usage
 
-<Insert instructions on how to use project including examples>
+<insert instructions on how to use project including examples>
 
 ## Contributions
 
