@@ -239,27 +239,6 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
         </div>
-        <script>
-        function validateForm() {
-            var passwordInput = document.getElementById("password");
-            var password = passwordInput.value;
-            var passwordError = document.getElementById("passwordError");
-
-            if (password.length < 8) {
-                passwordError.textContent = "Password must be at least 8 characters long.";
-                passwordInput.focus();
-                return false;
-            }
-
-            if (!/[A-Z]/.test(password)) {
-                passwordError.textContent = "Password must contain at least one uppercase letter.";
-                passwordInput.focus();
-                return false;
-            }
-
-            return true;
-        }
-    </script>
         <button type="submit">Create Account</button>
     </form>
 </body>
