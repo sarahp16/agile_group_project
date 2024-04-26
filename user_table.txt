@@ -1,0 +1,10 @@
+CREATE TABLE UsersInfo (
+	id INTEGER PRIMARY KEY,
+	username TEXT NOT NULL,
+	email TEXT NOT NULL,
+	password TEXT NOT NULL,
+	name TEXT NOT NULL,
+	surname TEXT NOT NULL,
+	birth_date DATE
+);
+	
