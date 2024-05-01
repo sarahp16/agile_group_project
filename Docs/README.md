@@ -11,7 +11,33 @@ Ben Russell (23355626)
 
 ## Installation
 
-<insert guide on how to install the project including any dependencies>
+The following guide below is to set up a server on the users computer
+
+### Step 1: Download all files onto the local computer into a folder
+
+Download all game files into a folder and open said folder path in a terminal
+
+### Step 2: Create a virtual environment 
+
+While in the project folder path run the following command
+
+"py -m venv venv"
+
+### Step 3: Launch the virtual environment
+
+Launch the virtual environment the following command
+
+(Windows) "venv\Scripts\activate"
+
+(Linux/MacOS) "source venv/bin/activate"
+
+### Step 4: Install dependencies
+
+Install dependencies using the following command
+
+"pip install -r requirements.txt"
+
+
 
 ## Usage
 
