@@ -1,0 +1,35 @@
+Features
+
+1. CREATE
+-a form where users can submit their own quests, found on CREATE page
+-these quests are stored in some sort of database
+
+questions:
+-title of quest
+-question 1...n
+-solutions (location) 1...n
+-duration of quest
+-location of quest
+-difficulty of quest
+
+
+2. PLAY
+-this is the "game" itself
+-game involves questions which have locations as coordinates, when the player reaches the location, it is solved
+-Eg. "where do students go to get in the zone?" solution: ezone
+-players pick a quest
+-questions are provided one by one
+-when the player reaches the location (from the solution), they "solve" the question and are provided the next one
+-to add later: hints/rewards eg. fast solving time gets -10 seconds etc.
+
+3. FEED
+-some sort of chat mechanism where players can discuss quests
+-a quest is posted by the creator, and users can respond with their comments about the quest (no hints/solutions)
+
+4. LEADERBOARD
+-players accumulate points from the quests
+-leaderboard can be filtered based on region etc.
+
+5. LOGIN//SIGNUP
+-players must make an account
+-this account allows them to both PLAY and CREATE, as well as contribute to the feed/forum
