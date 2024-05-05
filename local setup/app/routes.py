@@ -24,7 +24,7 @@ def leaderboard():
 def create():
     return render_template('create.html')
 
-@app.route('/signup', methods = ['GET', 'POST'])
+@app.route('/register', methods = ['GET', 'POST'])
 def signup():
     form = RegistrationForm()
     if form.validate_on_submit():
@@ -35,10 +35,10 @@ def signup():
         city = form.city.data
         suburb = form.suburb.data
 
-        new_user = Users(name = name, surname = surname, email = email, password = password, city = city, suburb = suburb)
+        new_user = UsersInfo(name = name, surname = surname, email = email, password = password, city = city, suburb = suburb)
 
         db.session.add(new_user)
         db.session.commit()
         flash('Congratulations, you are now registered!')
-        return redirect(url_for('/login'))
-    return render_template('registration.html', title = 'Register', form = form)
+        return redirect(url_for('/homepage'))
+    return render_template('registration.html', form = form)
