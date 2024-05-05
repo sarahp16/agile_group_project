@@ -7,7 +7,7 @@ from app import app
 def homepage():
     return render_template('homepage.html')
 
-@app.route('/play/find_game')
+@app.route('/find_game')
 def find_game():
     return render_template('find_game.html')
 
