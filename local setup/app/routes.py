@@ -40,5 +40,5 @@ def signup():
         db.session.add(new_user)
         db.session.commit()
         flash('Congratulations, you are now registered!')
-        return redirect(url_for('login'))
+        return redirect(url_for('/login'))
     return render_template('registration.html', title = 'Register', form = form)
