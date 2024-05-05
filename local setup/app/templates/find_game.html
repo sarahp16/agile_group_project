@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Play</title>
-        <link rel="stylesheet" href="stylesheet.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename = 'css/stylesheet.css') }}">
     </head>
     <body>
 
@@ -15,8 +15,10 @@
 
         <div class="sidebar">
             <a href="homepage">Home</a>
+            <a href="create">Create</a>
             <a href="play">Play Now</a>
-            <a href="play/find_game">Find a Game</a>
+            <a href="find_game">Find a Game</a>
+            <a href="leaderboard">Leaderboard</a>
         </div>
     </body>
 </html>
