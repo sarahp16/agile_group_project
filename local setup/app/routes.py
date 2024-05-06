@@ -25,7 +25,7 @@ def create():
     return render_template('create.html')
 
 @app.route('/register', methods = ['GET', 'POST'])
-def signup():
+def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         name = form.name.data
@@ -41,4 +41,4 @@ def signup():
         db.session.commit()
         flash('Congratulations, you are now registered!')
         return redirect(url_for('/homepage'))
-    return render_template('registration.html', form = form)
+    return render_template('register.html', form = form)
