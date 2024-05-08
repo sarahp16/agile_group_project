@@ -28,17 +28,9 @@ def create():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        name = form.name.data
-        surname = form.surname.data
-        email = form.email.data
-        password = form.password.data
-        city = form.city.data
-        suburb = form.suburb.data
-
-        new_user = UsersInfo(name = name, surname = surname, email = email, password = password, city = city, suburb = suburb)
-
+        new_user = UsersInfo(name = form.name.data, surname = form.surname.data, email = form.email.data, password = form.password.data, city = form.city.data, suburb = form.suburb.data)
         db.session.add(new_user)
         db.session.commit()
         flash('Congratulations, you are now registered!')
-        return redirect(url_for('/homepage'))
+        return redirect(url_for('login'))
     return render_template('register.html', form = form)
