@@ -34,3 +34,19 @@ def register():
         flash('Congratulations, you are now registered!')
         return redirect(url_for('login'))
     return render_template('register.html', form = form)
+
+@app.route('/login', methods = ['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        print("test")
+        user = UsersInfo.query.filter_by(email=form.email.data).first()
+        if user is None:
+            flash('Invalid email or password')
+            return redirect(url_for('login'))
+        if user.password == form.password.data:
+            return redirect(url_for('homepage'))
+        else:
+            flash('Invalid email or password')
+            return redirect(url_for('login'))
+    return render_template('login.html', form=form)
