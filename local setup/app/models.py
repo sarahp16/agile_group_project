@@ -1,12 +1,21 @@
-from flask_sqlalchemy import SQLAlchemy
+from typing import Optional
+import sqlalchemy as sa
+import sqlalchemy.orm as so
+from app import db, login
+from flask_login import UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
 
-db = SQLAlchemy()
-
-class UsersInfo(db.Model):
-    __tablename__ = 'UsersInfo'
-    name = db.Column(db.String(100), nullable = False)
-    surname = db.Column(db.String(100), nullable = False)
-    email = db.Column(db.String(90), unique = True, primary_key = True, nullable = False)
-    password = db.Column(db.String(50), nullable = False)
-    city = db.Column(db.String(50), nullable = False)
-    suburb = db.Column(db.String(50), nullable = False)
+class UsersInfo(UserMixin, db.Model):
+    name: so.Mapped[str] = so.mapped_column(sa.String(64), index = True)
+    surname: so.Mapped[str] = so.mapped_column(sa.String(64), index = True)
+    email: so.Mapped[str] = so.mapped_column(sa.String(120), index=True, unique=True, primary_key = True)
+    password: so.Mapped[str] = so.mapped_column(sa.String(64), index = True)
+    city: so.Mapped[str] = so.mapped_column(sa.String(64), index = True)
+    suburb: so.Mapped[str] = so.mapped_column(sa.String(64), index = True)
+    
+    def get_password(email):
+        user = UsersInfo.query.filter_by(email=email).first()
+        if user:
+            return user.password
+        else:
+            return None
