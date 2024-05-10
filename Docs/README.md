@@ -36,10 +36,15 @@ Launch the virtual environment the following command
 Install following libraries using "pip install <library_name>"
 
 flask
+
 flask-migrate
+
 flask-sqlalchemy
+
 flask-login
+
 flask-wtf
+
 werkzeug
 
 
