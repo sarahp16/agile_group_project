@@ -7,47 +7,56 @@
         <link rel="stylesheet" href="{{ url_for('static', filename = 'css/stylesheet.css') }}">
     </head>
     <body>
-        <div class="sidebar">
-            <a href="homepage">Home</a>
-            <a href="create">Create</a>
-            <a href="play">Play Now</a>
-            <a href="find_game">Find a Game</a>
-            <a href="leaderboard">Leaderboard</a>
-        </div>
-
         <div class="container">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for message in messages %}
+                            <div class="flash-message">{{ message }}</div>
+                        {% endfor %}
+                     </div>
+                {% endif %}
+            {% endwith %}
             <div class="auth-form">
                 <h2>Register</h2>
-                <form method="POST" action="/register">
+                <form method="POST" action="" novalidate>
                     {{ form.hidden_tag() }}
+        
                     <div class="form-group">
-                        {{ form.name.label(class="form-label") }}
+                        {{ form.name.label(class="form-label") }}<br>
                         {{ form.name(class="form-control", placeholder="First Name") }}
                     </div>
+        
                     <div class="form-group">
-                        {{ form.surname.label(class="form-label") }}
-                        {{ form.surname(class="form-control", placeholder="Surname") }}
+                        {{ form.surname.label(class="form-label") }}<br>
+                        {{ form.surname(class="form-control", placeholder="Last Name") }}
                     </div>
+        
                     <div class="form-group">
-                        {{ form.email.label(class="form-label") }}
+                        {{ form.email.label(class="form-label") }}<br>
                         {{ form.email(class="form-control", placeholder="Email Address") }}
                     </div>
+        
                     <div class="form-group">
-                        {{ form.password.label(class="form-label") }}
+                        {{ form.password.label(class="form-label") }}<br>
                         {{ form.password(class="form-control", placeholder="Password") }}
                     </div>
+        
                     <div class="form-group">
-                        {{ form.confirm_password.label(class="form-label") }}
+                        {{ form.confirm_password.label(class="form-label") }}<br>
                         {{ form.confirm_password(class="form-control", placeholder="Confirm Password") }}
                     </div>
+        
                     <div class="form-group">
-                        {{ form.city.label(class="form-label") }}
+                        {{ form.city.label(class="form-label") }}<br>
                         {{ form.city(class="form-control", placeholder="City") }}
                     </div>
+        
                     <div class="form-group">
-                        {{ form.suburb.label(class="form-label") }}
+                        {{ form.suburb.label(class="form-label") }}<br>
                         {{ form.suburb(class="form-control", placeholder="Suburb") }}
                     </div>
+        
                     <div class="form-group action">
                         {{ form.submit(class="btn") }}
                     </div>
@@ -55,4 +64,4 @@
             </div>
         </div>    
     </body>
-</html>   
+</html>    
