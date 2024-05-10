@@ -4,10 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
 </head>
 <body>
     <div class="container">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="flash-messages">
+            {% for message in messages %}
+              <div class="flash-message">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
         <h2>Login</h2>
         <form method="POST">
             {{ form.hidden_tag() }}
@@ -24,6 +33,10 @@
 
             <div class="form-group">
                 {{ form.submit(class="btn") }}
+            </div>
+
+            <div class="form-group">
+              <a href="{{ url_for('register') }}" class="btn btn-secondary">Register</a>
             </div>
         </form>
     </div>
