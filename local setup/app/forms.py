@@ -3,7 +3,7 @@ from wtforms import IntegerField, StringField, SubmitField, BooleanField, Passwo
 from wtforms.validators import DataRequired, Email, EqualTo, Length, Optional
 
 from app import db
-from app.models import UsersInfo,Quests, Hints, Solutions
+from app.models import UsersInfo,Quests, HintsSolutions, PlayerTracker
 
 class RegistrationForm(FlaskForm):
     name = StringField('First Name', validators=[DataRequired()])
@@ -13,6 +13,8 @@ class RegistrationForm(FlaskForm):
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     city = StringField('City', validators=[DataRequired()])
     suburb = StringField('Suburb', validators=[DataRequired()])
+    points = IntegerField('Points')
+    quests_completed = IntegerField('Quests Completed')
     submit = SubmitField('Sign Up')
 
 class LoginForm(FlaskForm):
@@ -378,12 +380,15 @@ class QuestForm(FlaskForm):
         ('Yangebup', 'Yangebup'),
         ('Yokine', 'Yokine')], 
         validators=[DataRequired()])
-    hints = []
-    solutions = []
-    for i in range(1, 11):
-        hint_field = StringField(f'Hint {i}', validators=[Optional(), Length(max=300)])
-        solution_field = StringField(f'Solution {i}', validators=[Optional(), Length(max=150)])
-        hints.append(hint_field)
-        solutions.append(solution_field)
+    hint_1 = StringField('Hint 1', validators=[DataRequired(), Length(max=300)])
+    solution_1 = StringField('Solution 1', validators=[DataRequired(), Length(max=150)])
+    hint_2 = StringField('Hint 2', validators=[DataRequired(), Length(max=300)])
+    solution_2 = StringField('Solution 2', validators=[DataRequired(), Length(max=150)])
+    hint_3 = StringField('Hint 3', validators=[DataRequired(), Length(max=300)])
+    solution_3 = StringField('Solution 3', validators=[DataRequired(), Length(max=150)])
+    hint_4 = StringField('Hint 4', validators=[DataRequired(), Length(max=300)])
+    solution_4 = StringField('Solution 4', validators=[DataRequired(), Length(max=150)])
+    hint_5 = StringField('Hint 5', validators=[DataRequired(), Length(max=300)])
+    solution_5 = StringField('Solution 5', validators=[DataRequired(), Length(max=150)])
     completed = BooleanField('Completed')
     submit = SubmitField('Submit')
