@@ -33,9 +33,14 @@ Launch the virtual environment the following command
 
 ### Step 4: Install dependencies
 
-Install dependencies using the following command
+Install following libraries using "pip install <library_name>"
 
-"pip install -r requirements.txt"
+flask
+flask-migrate
+flask-sqlalchemy
+flask-login
+flask-wtf
+werkzeug
 
 
 
