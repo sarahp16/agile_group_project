@@ -30,7 +30,16 @@ body {
     border-radius: 10px;
     padding: 50px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    width: 400px; /* Adjust width to make it larger */
+    width: 500px; 
+}
+
+.container.long {
+    background-color: rgba(78, 124, 140, 0.9);
+    border-radius: 10px;
+    padding: 50px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 500px; 
+    margin: 800px auto 20px; /* Add margin to the top */
 }
 
 .container h1 {
