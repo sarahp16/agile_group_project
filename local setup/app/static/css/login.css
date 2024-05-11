@@ -1,3 +1,17 @@
+.home-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #4e7c8c;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -14,7 +28,7 @@ body {
 .container {
     background-color: rgba(78, 124, 140, 0.9);
     border-radius: 10px;
-    padding: 30px;
+    padding: 50px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     width: 400px; /* Adjust width to make it larger */
 }
@@ -92,4 +106,10 @@ body {
 
 .form-footer a:hover {
     text-decoration: underline;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
 }
