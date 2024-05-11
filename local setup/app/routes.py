@@ -15,10 +15,6 @@ def user():
     completed = db.session.scalar(sa.select(PlayerTracker.quests_completed).where(PlayerTracker.user_id == current_user.id))
     return render_template('user.html', name =current_user.name, points = user_points, quests_completed = completed)
 
-@app.route('/play/find_game')
-def find_game():
-    return render_template('find_game.html')
-
 @app.route('/play')
 def play():
     return render_template('play.html')
