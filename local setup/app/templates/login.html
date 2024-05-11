@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
 </head>
 <body>
     <div class="container">
@@ -36,7 +36,8 @@
             </div>
 
             <div class="form-group">
-              <a href="{{ url_for('register') }}" class="btn btn-secondary">Register</a>
+              <h3> Don't have an account yet?</h3> <br>
+              <a href="{{ url_for('register') }}" class="btn">Register</a>
             </div>
         </form>
     </div>
