@@ -1,24 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Play</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename = 'css/stylesheet.css') }}">
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/stylesheet.css') }}">
+</head>
+<body>
 
-        <div class="content">
-            <h2>Welcome to the Leaderboard page!</h2>
-            <p>Here you will be able to see your ranking.</p>
-        </div>
+<div class="content">
+    <h2>Welcome to the Leaderboard page!</h2>
+    <p>Here you will be able to see your ranking.</p>
+</div>
 
-        <div class="sidebar">
-            <a href="homepage">Home</a>
-            <a href="create">Create</a>
-            <a href="play">Play Now</a>
-            <a href="find_game">Find a Game</a>
-            <a href="leaderboard">Leaderboard</a>
-        </div>
-    </body>
+<div class="leaderboard-table">
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for player in players %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ player.name }}</td>
+                <td>{{ player.points }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="sidebar">
+    <a href="user">Home</a>
+    <a href="create">Create</a>
+    <a href="play">Play Now</a>
+    <a href="find_game">Find a Game</a>
+    <a href="leaderboard">Leaderboard</a>
+</div>
+
+</body>
 </html>
