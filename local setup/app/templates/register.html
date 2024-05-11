@@ -4,9 +4,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Play</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename = 'css/stylesheet.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename = 'css/forms.css') }}">
     </head>
     <body>
+        <a href="/base">
+            <button class="home-button">Home</button>
+        </a> 
         <div class="container">
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
@@ -14,7 +17,7 @@
                         {% for message in messages %}
                             <div class="flash-message">{{ message }}</div>
                         {% endfor %}
-                     </div>
+                    </div>
                 {% endif %}
             {% endwith %}
             <div class="auth-form">
@@ -64,4 +67,4 @@
             </div>
         </div>    
     </body>
-</html>    
+</html>   
