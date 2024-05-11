@@ -11,14 +11,9 @@ def base():
 
 @app.route('/user')
 def user():
-    return render_template('user.html', name =current_user.name)
-
-#@app.route('/homepage')
-#def homepage():
-    #if current_user.is_authenticated:
-        #return render_template('homepage.html')
-    #else:
-        #return redirect(url_for('login'))
+    user_points = db.session.scalar(sa.select(PlayerTracker.points).where(PlayerTracker.user_id == current_user.id))
+    completed = db.session.scalar(sa.select(PlayerTracker.quests_completed).where(PlayerTracker.user_id == current_user.id))
+    return render_template('user.html', name =current_user.name, points = user_points, quests_completed = completed)
 
 @app.route('/play/find_game')
 def find_game():
@@ -30,7 +25,15 @@ def play():
 
 @app.route('/leaderboard')
 def leaderboard():
-    return render_template('leaderboard.html')
+    user_city = current_user.city
+    players_info = UsersInfo.query.filter_by(city=user_city).all()
+    players_with_points = []
+    for player_info in players_info:
+        player = PlayerTracker.query.filter_by(user_id=player_info.id).first()
+        if player:
+            players_with_points.append({'name': player_info.name, 'points': player.points})
+    sorted_players = sorted(players_with_points, key=lambda x: x['points'], reverse=True)
+    return render_template('leaderboard.html', city=user_city, players=sorted_players)
 
 @app.route('/create', methods=['GET', 'POST'])
 def create():
