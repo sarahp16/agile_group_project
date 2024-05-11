@@ -3,15 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to GeoQuester</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/stylesheet.css') }}">
+    <title>GeoQuester</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/base.css') }}">
 </head>
 <body>
-    <h1>Welcome to GeoQuester</h1>
-    <p>Please choose an action:</p>
-    <ul>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/register">Register</a></li>
-    </ul>
+    <div class="container">
+        <header>
+            <h1>GeoQuester</h1>
+        </header>
+        <main>
+            <section class="intro">
+                <h2>Welcome to GeoQuester</h2>
+                <p>GeoQuester is an exciting game where you explore the world through challenging quests.</p>
+            </section>
+            <section class="buttons">
+                <a href="/login">
+                    <button>Login</button>
+                </a>
+                <a href="/register">
+                    <button>Register</button>
+                </a>
+            </section>
+        </main>
+    </div>
 </body>
 </html>
