@@ -1,11 +1,1 @@
-How to run the server locally
-
-1) Download files from github
-
-2) open the file in terminal (right click open as terminal)
-
-3) type "pip install flask", "pip install python3", "pip install app"
-
-4) "python microblog.py"
-
-5) click on the url to open
+Please read instructions on main page to launch the application :)
