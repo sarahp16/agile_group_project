@@ -39,7 +39,7 @@ body {
     padding: 50px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     width: 500px; 
-    margin: 800px auto 20px; /* Add margin to the top */
+    margin: 900px auto 50px; /* Add margin to the top */
 }
 
 .container h1 {
@@ -121,4 +121,17 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+}
+
+.back-to-home {
+    font-size: 1.2em;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #4d7c8c;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
 }
