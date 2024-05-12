@@ -1,30 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Play</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename = 'css/stylesheet.css') }}">
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/base.css') }}">
+</head>
+<body>
 
-        <div class="content">
-            <h2>Welcome to the Play page!</h2>
-            <p>You can either select to play the daily quest, which will earn you points or play old quests for practice!</p>
+<div class="dashboard">
+    <div class="sidebar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename = 'css/logo.png') }}" alt="Logo" width="230" height="60">
         </div>
-
-        <div class="content">
-            <a href="/play/quest/1" class="btn">Play Daily Quest</a>
-        </div>
-
-        <div class="sidebar">
+        <div class="menu">
             <a href="user">Home</a>
+            <a href="play" class="active">Play Now</a>
             <a href="create">Create</a>
-            <a href="play">Play Now</a>
             <a href="leaderboard">Leaderboard</a>
             <a href="logout">Log Out</a>
-
         </div>
-        
-    </body>
+    </div>
+
+    <div class="main-content">
+        <div class="content">
+            <h2>Welcome to the Play page!</h2>
+            <p>The game will be located here.</p>
+        </div>
+    </div>
+</div>
+
+</body>
 </html>
