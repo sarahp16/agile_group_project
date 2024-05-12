@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quest</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/quest.css') }}">
+</head>
+<body>
+
+<div class="content">
+    <h2>{{ title }}</h2>
+    <p>Hint: {{ quest.quest_hint }}</p>
+
+    <form action="/play/quest/{{ quest.id }}" method="post">
+        <input type="hidden" name="quest_id" value="{{ quest.id }}">
+        <label for="answer">Your Answer:</label>
+        <input type="text" id="answer" name="answer" required>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>
