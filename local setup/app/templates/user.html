@@ -1,28 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>User Dashboard</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+</head>
+<body>
 
-        <div class="content">
-            <h1>User Dashboard</h1>
-            <p>Welcome, {{ name }}!</p>
-            <p>Your Points: {{ points }}</p>
-            <p>Quests Completed: {{ quests_completed }}</p>
-                <p>Select an option from the sidebar.</p>
+<div class="dashboard">
+    <div class="sidebar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename = 'css/logo.png') }}" alt="Logo" width="230" height="60">
         </div>
-
-        <div class="sidebar">
-            <a href="user">Home</a>
+        <div class="menu">
+            <a href="user" class="active">Home</a>
             <a href="play">Play Now</a>
             <a href="create">Create</a>
             <a href="leaderboard">Leaderboard</a>
             <a href="logout">Log Out</a>
         </div>
+    </div>
 
-    </body>
+    <div class="main-content">
+        <div class="header">
+            <h1>User Dashboard</h1>
+            <p>Welcome, {{ name }}!</p>
+        </div>
+        <div class="stats">
+            <div class="stat-item">
+                <p>Your Points</p>
+                <h2>{{ points }}</h2>
+            </div>
+            <div class="stat-item">
+                <p>Quests Completed</p>
+                <h2>{{ quests_completed }}</h2>
+            </div>
+        </div>
+        <div class="message">
+            <p>Select an option from the sidebar.</p>
+        </div>
+    </div>
+</div>
+
+</body>
 </html>
