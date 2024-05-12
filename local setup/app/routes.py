@@ -92,3 +92,43 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('base'))
+
+@app.route('/play/quest/<int:hint_id>', methods = ['GET', 'POST'])
+def quest(hint_id):
+    if 'selected_quest' not in session:
+        quest_ids = Quests.query.filter_by(completion=False).with_entities(Quests.id).all()
+        all_quest_ids = [id[0] for id in quest_ids]
+        selected_quest = random.choice(all_quest_ids)
+        session['selected_quest'] = selected_quest
+    else:
+        selected_quest = session['selected_quest']
+        
+    quest_title = Quests.query.filter_by(id=selected_quest).with_entities(Quests.title).scalar()
+    all_hints = HintsSolutions.query.filter_by(quest_id=selected_quest).all()
+    quest_hints_solutions = []
+    i = 0
+    for hint in all_hints:
+        i += 1
+        quest_hints_solutions.append({'id': i, 'quest_hint': hint.hint_text, 'quest_solution': hint.solution_text})
+
+    quest = next((h for h in quest_hints_solutions if h['id'] == hint_id), None)
+    if request.method == 'POST':
+        user_answer = request.form.get('answer', '').lower()
+        if user_answer == quest['quest_solution']:
+            next_hint_id = hint_id + 1
+            if next_hint_id <= len(quest_hints_solutions):
+                return redirect(f'/play/quest/{next_hint_id}')
+            else:
+                completed_quest = Quests.query.filter_by(id=selected_quest).one()
+                completed_quest.completion = True
+                db.session.commit()
+                player = PlayerTracker.query.filter_by(user_id = current_user.id).first()
+                if player:
+                    player.quests_completed += 1
+                    db.session.commit()
+                session.pop('selected_quest', None)
+                flash('Congratulations! You have completed the daily quest')
+                return redirect(url_for('play'))
+        else:
+            flash('Incorrect answer. Try again.')
+    return render_template('quest.html', quest=quest, title=quest_title)
