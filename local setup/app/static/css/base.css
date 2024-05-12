@@ -1,0 +1,112 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    height: 100%;
+}
+
+.dashboard {
+    display: flex;
+    height: 100%;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #4d7c8c;
+    color: #fff;
+    padding-top: 20px;
+}
+
+.logo img {
+    display: block;
+    margin: 0 auto;
+
+}
+
+.menu {
+    padding-top: 20px;
+    font-size: 18px;
+}
+
+.menu a {
+    display: block;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.menu a:hover {
+    background-color: #d6cdc7;
+}
+
+.menu a.active {
+    background-color: #d6cdc7;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+}
+
+.header h1 {
+    margin-top: 0;
+}
+
+.stats {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.stat-item {
+    background-color: #ecf0f1;
+    padding: 20px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.stat-item p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.stat-item span {
+    font-size: 16px;
+    color: #333;
+}
+
+.message {
+    margin-top: 20px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.leaderboard-table {
+    margin-top: 20px;
+}
+.leaderboard-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.leaderboard-table th, .leaderboard-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    width: auto;
+}
+.leaderboard-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+.leaderboard-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+.leaderboard-table tbody tr:hover {
+    background-color: #e5e5e5;
+}
