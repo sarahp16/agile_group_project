@@ -6,10 +6,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/forms.css') }}">
 </head>
 <body>
-
     <a href="/user">
         <button class="back-to-home">Home</button>
     </a>
+    <br>
     <div class="container long">
         <h1>Create a Quest!</h1>
         <form method="POST">
@@ -129,7 +129,6 @@
             <div class="form-group action">
                 {{ form.submit(class="btn") }}
             </div>
-            <br>
         </form>
     </div>
 </body>
