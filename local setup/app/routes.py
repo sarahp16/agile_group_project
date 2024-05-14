@@ -11,9 +11,20 @@ def base():
 
 @app.route('/user')
 def user():
+    user_city = current_user.city
+    players_info = UsersInfo.query.filter_by(city=user_city).all()
+    players_with_points = []
+    for player_info in players_info:
+        player = PlayerTracker.query.filter_by(user_id=player_info.id).first()
+        if player:
+            players_with_points.append({'name': player_info.name, 'points': player.points})
+    sorted_players = sorted(players_with_points, key=lambda x: x['points'], reverse=True)
+    for i, player in enumerate(sorted_players):
+        if player['name'] == current_user.name:
+            user_rank = i + 1
     user_points = db.session.scalar(sa.select(PlayerTracker.points).where(PlayerTracker.user_id == current_user.id))
     completed = db.session.scalar(sa.select(PlayerTracker.quests_completed).where(PlayerTracker.user_id == current_user.id))
-    return render_template('user.html', name =current_user.name, points = user_points, quests_completed = completed)
+    return render_template('user.html', name =current_user.name, points = user_points, quests_completed = completed, rank = user_rank)
 
 @app.route('/play')
 def play():
