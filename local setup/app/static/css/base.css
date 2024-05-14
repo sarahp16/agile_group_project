@@ -1,10 +1,15 @@
 body, html {
-    margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
     font-size: 18px;
     height: 100%;
+    margin: 0;
+    background-image: url('map.png');
+    background-size: cover;
+    position: relative;
+    background-attachment: fixed;
 }
+
 
 .dashboard {
     display: flex;
@@ -12,10 +17,15 @@ body, html {
 }
 
 .sidebar {
+    position: fixed;
+    top: 0;
     width: 250px;
     background-color: #4d7c8c;
     color: #fff;
     padding-top: 20px;
+    min-height: 100%;
+    flex-grow: 1;
+    border-radius: 5px;
 }
 
 .logo img {
@@ -51,14 +61,27 @@ body, html {
     display: flex;
     flex-direction: column;
     justify-content: top;
+    margin-left: 250px;
 }
 
 .header h1 {
     margin-top: 0;
+    color: black;
+    display: inline-block; /* Ensures the background color wraps around the text */
+    padding: 5px 10px; /* Adjust padding to create space around the text */
+    background-color: rgb(255,255,255,0.5); /* Background color for the h1 */
+    border-radius: 5px;
+}
+
+.header p {
+    color: black;
+    display: inline-block; /* Ensures the background color wraps around the text */
+    padding: 5px 10px; /* Adjust padding to create space around the text */
+    background-color: rgb(255,255,255,0.5); /* Background color for the h1 */
+    border-radius: 5px;
 }
 
 .stats {
-    margin-top: 20px;
     display: flex;
     justify-content: flex-start;
 }
@@ -82,7 +105,6 @@ body, html {
 }
 
 .message {
-    margin-top: 20px;
     background-color: #f0f0f0;
     padding: 20px;
     border-radius: 5px;
@@ -107,6 +129,9 @@ body, html {
 .leaderboard-table tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
-.leaderboard-table tbody tr:hover {
+.leaderboard-table tbody tr:nth-child(odd) {
     background-color: #e5e5e5;
+}
+.leaderboard-table tbody tr:hover {
+    background-color: #9c9c9c61;
 }
