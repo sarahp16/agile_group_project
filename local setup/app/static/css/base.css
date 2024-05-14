@@ -110,28 +110,28 @@ body, html {
     border-radius: 5px;
 }
 
-.leaderboard-table {
+.tables {
     margin-top: 20px;
 }
-.leaderboard-table table {
+.tables table {
     width: 100%;
     border-collapse: collapse;
 }
-.leaderboard-table th, .leaderboard-table td {
+.tables th, .tables td {
     padding: 10px;
     border: 1px solid #ccc;
     width: auto;
 }
-.leaderboard-table th {
+.tables th {
     background-color: #f2f2f2;
     text-align: left;
 }
-.leaderboard-table tbody tr:nth-child(even) {
+.tables tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
-.leaderboard-table tbody tr:nth-child(odd) {
+.tables tbody tr:nth-child(odd) {
     background-color: #e5e5e5;
 }
-.leaderboard-table tbody tr:hover {
+.tables tbody tr:hover {
     background-color: #9c9c9c61;
 }
