@@ -1,0 +1,82 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('mountains.png'); /* Replace 'background.jpg' with your image path */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    background-color: rgba(200, 200, 200, 0.8); /* Grey color with some transparency */
+    padding: 40px; /* Increased padding */
+    text-align: center;
+    border-radius: 20px; /* Increased border radius */
+    width: 60%; /* Adjust the width as per your preference */
+    max-width: 600px; /* Limiting the max-width to keep it from becoming too wide */
+}
+
+h2 {
+    margin-top: 0;
+    font-size: 2.5em; /* Larger font size */
+    font-family: Arial, sans-serif; /* Change the font */
+}
+
+p {
+    margin-bottom: 20px;
+    font-size: 1.2em; /* Larger font size */
+    font-family: Arial, sans-serif; /* Change the font */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    margin-bottom: 10px;
+    font-size: 1.2em; /* Larger font size */
+    font-family: Arial, sans-serif; /* Change the font */
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 15px; /* Increased padding */
+    margin-bottom: 20px; /* Increased margin */
+    box-sizing: border-box; /* Ensure padding is included in the width */
+    font-size: 1.2em; /* Larger font size */
+    font-family: Arial, sans-serif; /* Change the font */
+}
+
+button {
+    padding: 15px 30px; /* Increased padding */
+    background-color: #4d7c8c; /* Blue color for the button */
+    color: #fff;
+    border: none;
+    border-radius: 8px; /* Increased border radius */
+    cursor: pointer;
+    font-size: 1.2em; /* Larger font size */
+    font-family: Arial, sans-serif; /* Change the font */
+}
+
+button:hover {
+    background-color: #0f4d4d; /* Darker shade of blue on hover */
+}
+
+.quit-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #4e7c8c;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+
+}
