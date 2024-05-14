@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, session, flash
+from flask import Flask, render_template, redirect, url_for, request, session, flash, jsonify
 from app.forms import RegistrationForm, LoginForm, UsersInfo, QuestForm, Quests, HintsSolutions, PlayerTracker
 import sqlalchemy as sa
 from app import app, db
@@ -25,6 +25,10 @@ def user():
     user_points = db.session.scalar(sa.select(PlayerTracker.points).where(PlayerTracker.user_id == current_user.id))
     completed = db.session.scalar(sa.select(PlayerTracker.quests_completed).where(PlayerTracker.user_id == current_user.id))
     return render_template('user.html', name =current_user.name, points = user_points, quests_completed = completed, rank = user_rank)
+
+@app.route('/play/find_game')
+def find_game():
+    return render_template('find_game.html')
 
 @app.route('/play')
 def play():
@@ -104,42 +108,53 @@ def logout():
     logout_user()
     return redirect(url_for('base'))
 
-@app.route('/play/quest/<int:hint_id>', methods = ['GET', 'POST'])
-def quest(hint_id):
-    if 'selected_quest' not in session:
-        quest_ids = Quests.query.filter_by(completion=False).with_entities(Quests.id).all()
-        all_quest_ids = [id[0] for id in quest_ids]
-        selected_quest = random.choice(all_quest_ids)
-        session['selected_quest'] = selected_quest
-    else:
-        selected_quest = session['selected_quest']
-        
-    quest_title = Quests.query.filter_by(id=selected_quest).with_entities(Quests.title).scalar()
-    all_hints = HintsSolutions.query.filter_by(quest_id=selected_quest).all()
+@app.route('/filter', methods=['GET'])
+def filter_quests():
+    duration = request.args.get('duration')
+    difficulty = request.args.get('difficulty')
+    suburb = request.args.get('suburb')
+    filtered_quests_query = Quests.query
+
+    if duration:
+        filtered_quests_query = filtered_quests_query.filter(Quests.duration == duration)
+    if difficulty:
+        filtered_quests_query = filtered_quests_query.filter(Quests.difficulty == difficulty)
+    if suburb:
+        filtered_quests_query = filtered_quests_query.filter(Quests.suburb == suburb)
+
+    filtered_quests = filtered_quests_query.all()
+
+    serialized_quests = [{'id': quest.id, 'title': quest.title, 'difficulty': quest.difficulty, 'duration': quest.duration, 'suburb': quest.suburb} for quest in filtered_quests]
+
+    return jsonify(serialized_quests)
+
+
+
+@app.route('/play/<int:quest_id>/<int:hint_id>', methods = ['GET', 'POST'])
+def quest(quest_id, hint_id):    
+    quest_title = Quests.query.filter_by(id=quest_id).with_entities(Quests.title).scalar()
+    all_hints = HintsSolutions.query.filter_by(quest_id=quest_id).all()
     quest_hints_solutions = []
     i = 0
     for hint in all_hints:
         i += 1
-        quest_hints_solutions.append({'id': i, 'quest_hint': hint.hint_text, 'quest_solution': hint.solution_text})
+        quest_hints_solutions.append({'hint_id': i, 'quest_hint': hint.hint_text, 'quest_solution': hint.solution_text})
 
-    quest = next((h for h in quest_hints_solutions if h['id'] == hint_id), None)
+    quest = next((h for h in quest_hints_solutions if h['hint_id'] == hint_id), None)
     if request.method == 'POST':
         user_answer = request.form.get('answer', '').lower()
         if user_answer == quest['quest_solution']:
             next_hint_id = hint_id + 1
+            print("id")
             if next_hint_id <= len(quest_hints_solutions):
-                return redirect(f'/play/quest/{next_hint_id}')
+                return redirect(f'/play/{quest_id}/{next_hint_id}')
             else:
-                completed_quest = Quests.query.filter_by(id=selected_quest).one()
-                completed_quest.completion = True
-                db.session.commit()
                 player = PlayerTracker.query.filter_by(user_id = current_user.id).first()
                 if player:
                     player.quests_completed += 1
                     db.session.commit()
                 session.pop('selected_quest', None)
-                flash('Congratulations! You have completed the daily quest')
                 return redirect(url_for('play'))
         else:
             flash('Incorrect answer. Try again.')
-    return render_template('quest.html', quest=quest, title=quest_title)
+    return render_template('quest.html', quest=quest, title=quest_title, hint_id = hint_id, quest_id = quest_id)
