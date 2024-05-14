@@ -126,7 +126,10 @@
                 {% endfor %}
             </div>
             <br>
-            <input type="submit" value="Submit">
+            <div class="form-group action">
+                {{ form.submit(class="btn") }}
+            </div>
+            <br>
         </form>
     </div>
 </body>
