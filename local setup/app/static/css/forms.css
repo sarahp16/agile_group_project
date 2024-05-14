@@ -16,7 +16,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-image: url('https://64.media.tumblr.com/c41e3a466a22282cd306de29d0f6fdd3/9f8dd975c0c6700a-44/s1280x1920/3e984d697eccf534beaf4f5625686baa26081572.png');
+    background-image: url('map2.jpeg');
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -182,6 +182,6 @@ body {
     height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 5px solid #666; /* Change the color of the arrow */
+    border-top: 5px solid #666; 
     pointer-events: none;
 }
