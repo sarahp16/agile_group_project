@@ -23,6 +23,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    background-attachment: fixed;
 }
 
 .container {
@@ -67,6 +69,14 @@ body {
     color: #fff;
     text-align: left;
     margin-bottom: 30px;
+}
+
+select {
+    margin-bottom: 10px;
+    font-size: 15px; /* Larger font size */
+    font-family: Arial, sans-serif; /* Change the font */
+    border-radius: 5px;
+    padding:5px;
 }
 
 .form-group h3 {
