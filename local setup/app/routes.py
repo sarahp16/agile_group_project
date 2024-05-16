@@ -153,15 +153,17 @@ def quest(quest_id, hint_id):
         user_answer = request.form.get('answer', '').lower()
         quest_answer = quest['quest_solution']
         if user_answer == quest_answer:
-            flash("Correct!")
             player = PlayerTracker.query.filter_by(user_id=current_user.id).first()
             if heart_count == 3:
+                flash("Correct! +5 points!")
                 player.points += 5
                 db.session.commit()
             elif heart_count == 2:
+                flash("Correct! +3 points!")
                 player.points += 3
                 db.session.commit()
             else:
+                flash("Correct! +1 point!")
                 player.points += 1
                 db.session.commit()
             next_hint_id = hint_id + 1
