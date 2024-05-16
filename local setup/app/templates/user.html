@@ -1,64 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>User Dashboard</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    </head>
+    <body>
+        <div class="dashboard">
+            <div class="sidebar">
+                <div class="logo">
+                    <img src="{{ url_for('static', filename = 'css/logo.png') }}" alt="Logo" width="230" height="60">
+                </div>
+                <div class="menu">
+                    <a href="user" class="active">Home</a>
+                    <a href="play">Play Now</a>
+                    <a href="create">Create</a>
+                    <a href="leaderboard">Leaderboard</a>
+                    <a href="logout" id="logout">Log Out</a>
+                </div>
+            </div>
 
-<div class="dashboard">
-    <div class="sidebar">
-        <div class="logo">
-            <img src="{{ url_for('static', filename = 'css/logo.png') }}" alt="Logo" width="230" height="60">
-        </div>
-        <div class="menu">
-            <a href="user" class="active">Home</a>
-            <a href="play">Play Now</a>
-            <a href="create">Create</a>
-            <a href="leaderboard">Leaderboard</a>
-            <a href="logout">Log Out</a>
-        </div>
-    </div>
-
-    <div class="main-content">
-        <div class="header">
-            <h1>Dashboard</h1><br>
-            <p>Welcome, {{ name }}!</p>
-        </div>
-        <div class="stats">
-            <div class="stat-item">
-                <p>Your Points</p>
-                <h2>{{ points }}</h2>
+            <div class="main-content">
+                <div class="header">
+                    <h1>Dashboard</h1><br>
+                    <p>Welcome, {{ name }}!</p>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <p>Your Points</p>
+                        <h2>{{ points }}</h2>
+                    </div>
+                    <div class="stat-item">
+                        <p>City Rank</p>
+                        <h2>{{ rank }}</h2>
+                    </div>
+                    <div class="stat-item">
+                        <p>Quests Completed</p>
+                        <h2>{{ quests_completed }}</h2>
+                    </div>
+                    <div class="stat-item">
+                        <p>Quests Created</p>
+                        <h2>{{ quests_created }}</h2>
+                    </div>
+                </div>
+                <br>
+                <div class="header">
+                    <h1>About Us</h1>
+                </div>
+                <div class="message">
+                    <h2>Who are we?</h2>
+                    <p>Welcome to GeoQuester, the ultimate adventure app for explorers and adventurers alike! At GeoQuester, we believe that every corner of your city holds a story, a mystery, or a hidden gem waiting to be discovered. Our mission is to turn your everyday surroundings into an exciting playground of quests and challenges.</p>
+                    <h2>Where are we?</h2>
+                    <p>We are everywhere! Well, kind of... GeoQuester was born in the city of Perth, Australia, and currently, we are only operating quests in Perth. However, please do not fear, we are working hard to expand our quests globally! Our hope is that whether you're strolling through the streets of Perth, wandering the alleyways of Tokyo, or hiking the trails of Patagonia, you can embark on thrilling quests and discover the world around you in a whole new way.</p>
+                    <h2>How to play?</h2>
+                    <p>To begin, click on the "Play Now" menu option. This will lead you to a page where you can explore quests around your city. Next, select a quest of your choosing. Each quest involves 5 questions. These questions will require you to move around the quest's area, referring to various landmarks, structures and artefacts to answer the questions. You only progress to the next question if you answer correctly. Points are earned for accuracy and completion.</p>
+                </div>
+                <br>
             </div>
-            <div class="stat-item">
-                <p>City Rank</p>
-                <h2>{{ rank }}</h2>
-            </div>
-            <div class="stat-item">
-                <p>Quests Completed</p>
-                <h2>{{ quests_completed }}</h2>
-            </div>
-            <div class="stat-item">
-                <p>Quests Created</p>
-                <h2>{{ quests_created }}</h2>
-            </div>
         </div>
-        <br>
-        <div class="header">
-            <h1>About Us</h1>
-        </div>
-        <div class="message">
-            <h2>Who are we?</h2>
-            <p>Welcome to GeoQuester, the ultimate adventure app for explorers and adventurers alike! At GeoQuester, we believe that every corner of your city holds a story, a mystery, or a hidden gem waiting to be discovered. Our mission is to turn your everyday surroundings into an exciting playground of quests and challenges.</p>
-            <h2>Where are we?</h2>
-            <p>We are everywhere! Well, kind of... GeoQuester was born in the city of Perth, Australia, and currently, we are only operating quests in Perth. However, please do not fear, we are working hard to expand our quests globally! Our hope is that whether you're strolling through the streets of Perth, wandering the alleyways of Tokyo, or hiking the trails of Patagonia, you can embark on thrilling quests and discover the world around you in a whole new way.</p>
-            <h2>How to play?</h2>
-            <p>To begin, click on the "Play Now" menu option. This will lead you to a page where you can explore quests around your city. Next, select a quest of your choosing. Each quest involves 5 questions. These questions will require you to move around the quest's area, referring to various landmarks, structures and artefacts to answer the questions. You only progress to the next question if you answer correctly. Points are earned for accuracy and completion.</p>
-        </div>
-        <br>
-    </div>
-</div>
-</body>
+        <script>
+            // Wait for the DOM to be fully loaded
+            document.addEventListener('DOMContentLoaded', function () {
+                // Select the logout link
+                var logoutLink = document.getElementById('logout');
+        
+                // Add a click event listener to the logout link
+                logoutLink.addEventListener('click', function (event) {
+                    // Prevent the default link behavior
+                    event.preventDefault();
+        
+                    // Show the logout confirmation alert
+                    var confirmLogout = confirm("Are you sure you want to log out?");
+                    if (confirmLogout) {
+                        // If the user confirms, redirect to the logout URL
+                        window.location.href = logoutLink.getAttribute('href');
+                    }
+                });
+            });
+        </script>
+    </body>
 </html>
