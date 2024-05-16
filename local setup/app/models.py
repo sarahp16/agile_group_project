@@ -5,6 +5,7 @@ from sqlalchemy import ForeignKey
 from app import db, login
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+import sqlite3
 
 class UsersInfo(UserMixin, db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key = True, autoincrement=True)
@@ -15,7 +16,9 @@ class UsersInfo(UserMixin, db.Model):
     city: so.Mapped[str] = so.mapped_column(sa.String(64), index = True)
     suburb: so.Mapped[str] = so.mapped_column(sa.String(64), index = True)
     
+    writer: so.WriteOnlyMapped['Quests'] = so.relationship(back_populates='creator')
     player_tracker = so.relationship('PlayerTracker', back_populates='user')
+    completeduser: so.Mapped['CompletedQuests'] = so.relationship(back_populates="questuser")
 
     def get_password(email):
         user = UsersInfo.query.filter_by(email=email).first()
@@ -36,9 +39,11 @@ class Quests(db.Model):
     duration: so.Mapped[str] = so.mapped_column(sa.String(100), index = True)
     difficulty: so.Mapped[str] = so.mapped_column(sa.String(100), index = True)
     suburb: so.Mapped[str] = so.mapped_column(sa.String(100), index = True)
-    completion: so.Mapped[bool] = so.mapped_column(sa.Boolean, default = False)
+    creator_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(UsersInfo.id), index = True)
 
+    creator: so.Mapped['UsersInfo'] = so.relationship('UsersInfo', back_populates='writer')
     hintsolution: so.WriteOnlyMapped['HintsSolutions'] = so.relationship(back_populates='quest')
+    completedquests: so.Mapped['CompletedQuests'] = so.relationship(back_populates="completion")
 
 class HintsSolutions(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key = True, autoincrement=True)
@@ -54,3 +59,11 @@ class PlayerTracker(db.Model):
     quests_completed: so.Mapped[int] = so.mapped_column(index = True, default = 0)
 
     user = so.relationship('UsersInfo', back_populates='player_tracker')
+
+class CompletedQuests(db.Model):
+    id: so.Mapped[int] = so.mapped_column(primary_key = True, autoincrement=True)
+    quest_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(Quests.id), index = True)
+    user_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(UsersInfo.id), index = True)
+
+    completion: so.Mapped[Quests] = so.relationship(back_populates="completedquests")
+    questuser: so.Mapped[UsersInfo] = so.relationship(back_populates="completeduser")
