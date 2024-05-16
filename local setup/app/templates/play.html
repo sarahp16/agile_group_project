@@ -425,43 +425,48 @@
 
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script>
-                $('#filterButton').click(function() {
-                filterQuests();
+                $(document).ready(function() {
+                    loadAllQuests();
+                    $('#filterButton').click(function() {
+                        filterQuests(true);
+                     });
                 });
+                function loadAllQuests() {
+                    filterQuests(false); 
+                }
 
-            function filterQuests() {
-                var duration = $('#duration').val();
-                var difficulty = $('#difficulty').val();
-                var suburb = $('#suburb').val();
+                function filterQuests() {
+                    var duration = $('#duration').val();
+                    var difficulty = $('#difficulty').val();
+                    var suburb = $('#suburb').val();
 
-                $.ajax({
-                    url: '/filter',
-                    type: 'GET',
-                    data: {
-                        duration: duration, 
-                        difficulty: difficulty, 
-                        suburb: suburb
-                    },
-                    success: function(response) {
-                        var questsTable = $('#questsTable tbody');
-                        questsTable.empty(); 
+                    $.ajax({
+                        url: '/filter',
+                        type: 'GET',
+                        data: {
+                            duration: duration, 
+                            difficulty: difficulty, 
+                            suburb: suburb
+                        },
+                        success: function(response) {
+                            var questsTable = $('#questsTable tbody');
+                            questsTable.empty(); 
 
-                        $.each(response, function(index, quest) {
-                            var row = $('<tr>');
-                            var questNameLink = $('<a>').attr('href', 'play/' + quest.id + '/1').text(quest.title);
-                            row.append('<td>' + questNameLink.prop('outerHTML') + '</td>'); 
-                            row.append('<td>' + quest.duration + '</td>');
-                            row.append('<td>' + quest.difficulty + '</td>');
-                            row.append('<td>' + quest.suburb + '</td>');
-                            questsTable.append(row);
-                        });
-                    },
-
-                    error: function(xhr, status, error) {
-                        console.error('Error:', error);
-                    }
-                });
-            }
+                            $.each(response, function(index, quest) {
+                                var row = $('<tr>');
+                                var questNameLink = $('<a>').attr('href', 'play/' + quest.id + '/1').text(quest.title);
+                                row.append('<td>' + questNameLink.prop('outerHTML') + '</td>'); 
+                                row.append('<td>' + quest.difficulty + '</td>');
+                                row.append('<td>' + quest.duration + '</td>');
+                                row.append('<td>' + quest.suburb + '</td>');
+                                questsTable.append(row);
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                        }
+                    });
+                 }
             </script>
         </div>
     </body>
