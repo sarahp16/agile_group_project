@@ -390,5 +390,4 @@ class QuestForm(FlaskForm):
     solution_4 = StringField('Solution 4', validators=[DataRequired(), Length(max=150)])
     hint_5 = StringField('Hint 5', validators=[DataRequired(), Length(max=300)])
     solution_5 = StringField('Solution 5', validators=[DataRequired(), Length(max=150)])
-    completed = BooleanField('Completed')
     submit = SubmitField('Submit')
