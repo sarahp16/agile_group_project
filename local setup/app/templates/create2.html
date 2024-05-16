@@ -1,135 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/forms.css') }}">
-</head>
-<body>
-    <a href="/user">
-        <button class="back-to-home">Home</button>
-    </a>
-    <br>
-    <div class="container long">
-        <h1>Create a Quest!</h1>
-        <form id="quest-form" method="POST">
-            {{ form.hidden_tag() }}
-            <div class="form-group">
-                {{ form.q_title.label }}
-                {{ form.q_title(class="form-control") }}
-                {% for error in form.q_title.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </div>
-            <br>
-            <div class="form-group">
-                {{ form.q_duration.label }}
-                {{ form.q_duration(class="form-control") }}
-                {% for error in form.q_duration.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </div>
-            <br>
-            <div class="form-group">
-                {{ form.difficulty.label }}
-                {{ form.difficulty(class="form-control") }}
-                {% for error in form.difficulty.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </div>
-            <br>
-            <div class="form-group">
-                {{ form.quest_suburb.label }}
-                {{ form.quest_suburb(class="form-control") }}
-                {% for error in form.quest_suburb.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </div>
-            <br>
-            <div class="form-group">
-                {{ form.hint_1.label }}
-                {{ form.hint_1(class="form-control") }}
-                {% for error in form.hint_1.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </div>
-            <br>
-            <div class="form-group">
-                {{ form.solution_1.label }}
-                {{ form.solution_1(class="form-control") }}
-                {% for error in form.solution_1.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </div>
-            <br>
-            <div class="form-group">
-                {{ form.hint_2.label }}
-                {{ form.hint_2(class="form-control") }}
-                {% for error in form.hint_2.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </div>
-            <br>
-            <div class="form-group">
-                {{ form.solution_2.label }}
-                {{ form.solution_2(class="form-control") }}
-                {% for error in form.solution_2.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </div>
-            <br>
-            <div class="form-group">
-                {{ form.hint_3.label }}
-                {{ form.hint_3(class="form-control") }}
-                {% for error in form.hint_3.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </div>
-            <br>
-            <div class="form-group">
-                {{ form.solution_3.label }}
-                {{ form.solution_3(class="form-control") }}
-                {% for error in form.solution_3.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </div>
-            <br>
-            <div class="form-group">
-                {{ form.hint_4.label }}
-                {{ form.hint_4(class="form-control") }}
-                {% for error in form.hint_4.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </div>
-            <br>
-            <div class="form-group">
-                {{ form.solution_4.label }}
-                {{ form.solution_4(class="form-control") }}
-                {% for error in form.solution_4.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </div>
-            <br>
-            <div class="form-group">
-                {{ form.hint_5.label }}
-                {{ form.hint_5(class="form-control") }}
-                {% for error in form.hint_5.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </div>
-            <br>
-            <div class="form-group">
-                {{ form.solution_5.label }}
-                {{ form.solution_5(class="form-control") }}
-                {% for error in form.solution_5.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </div>
-            <br>
-            <div class="form-group action">
-                {{ form.submit(class="btn") }}
-            </div>
-        </form>
-    </div>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename = 'css/forms.css') }}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+
+        <script>
+            function handleSubmit() {
+                var form = document.getElementById('quest-form');
+                if (form.checkValidity()) {
+                    alert('Quest submitted!');
+                } 
+            }
+        </script>
+
+    </head>
+    <body>
+        <a href="/user">
+            <button class="back-to-home">Home</button>
+        </a>
+        <br>
+        <div class="container long">
+            <h1>Create a Quest!</h1>
+            <form id="quest-form" method="POST">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.q_title.label }}
+                    {{ form.q_title(class="form-control") }}
+                    {% for error in form.q_title.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <br>
+                <div class="form-group">
+                    {{ form.q_duration.label }}
+                    {{ form.q_duration(class="form-control") }}
+                    {% for error in form.q_duration.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <br>
+                <div class="form-group">
+                    {{ form.difficulty.label }}
+                    {{ form.difficulty(class="form-control") }}
+                    {% for error in form.difficulty.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <br>
+                <div class="form-group">
+                    {{ form.quest_suburb.label }}
+                    {{ form.quest_suburb(class="form-control") }}
+                    {% for error in form.quest_suburb.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <br>
+                <div class="form-group">
+                    {{ form.hint_1.label }}
+                    {{ form.hint_1(class="form-control") }}
+                    {% for error in form.hint_1.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <br>
+                <div class="form-group">
+                    {{ form.solution_1.label }}
+                    {{ form.solution_1(class="form-control") }}
+                    {% for error in form.solution_1.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <br>
+                <div class="form-group">
+                    {{ form.hint_2.label }}
+                    {{ form.hint_2(class="form-control") }}
+                    {% for error in form.hint_2.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <br>
+                <div class="form-group">
+                    {{ form.solution_2.label }}
+                    {{ form.solution_2(class="form-control") }}
+                    {% for error in form.solution_2.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <br>
+                <div class="form-group">
+                    {{ form.hint_3.label }}
+                    {{ form.hint_3(class="form-control") }}
+                    {% for error in form.hint_3.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <br>
+                <div class="form-group">
+                    {{ form.solution_3.label }}
+                    {{ form.solution_3(class="form-control") }}
+                    {% for error in form.solution_3.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <br>
+                <div class="form-group">
+                    {{ form.hint_4.label }}
+                    {{ form.hint_4(class="form-control") }}
+                    {% for error in form.hint_4.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <br>
+                <div class="form-group">
+                    {{ form.solution_4.label }}
+                    {{ form.solution_4(class="form-control") }}
+                    {% for error in form.solution_4.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <br>
+                <div class="form-group">
+                    {{ form.hint_5.label }}
+                    {{ form.hint_5(class="form-control") }}
+                    {% for error in form.hint_5.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <br>
+                <div class="form-group">
+                    {{ form.solution_5.label }}
+                    {{ form.solution_5(class="form-control") }}
+                    {% for error in form.solution_5.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <br>
+                <div class="form-group action">
+                    {{ form.submit(class="btn", onclick="handleSubmit()")}}
+                </div>
+            </form>
+        </div>
+        <br><br>
+    </body>
 </html>
