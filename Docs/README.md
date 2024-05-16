@@ -10,7 +10,11 @@
 
 ## Description
 
-Our application (GeoQuester) is an exciting game where you are able to explore the world around you through challenging quests. The game is motivated by the success of a similar website, GeoGuesser, which utilises Google Maps to present a location to the user to guess. Our application's main purpose is to educate users on different trivia for their city/suburb as well as advocate for a unique game and exercise experience when played via visiting the different locations to find the hint solutions.  By allowing to create quest submissions that may be selected for the daily quest, this adds an interactive feature to the application as their quest may be picked and played as the daily quest for all users. The daily quest consists of 5 hints which can be answered by visiting a specific location or using trivial knowledge to answer the hints. After completing the quest, the user accumulates points towards their account that ranks them in the leaderboard section of our application against other users in their city. 
+Our application (GeoQuester) is an exciting game where you are able to explore the world around you through challenging quests. The game is motivated by the success of a similar website, GeoGuesser, which utilises Google Maps to present a location to the user to guess. Our application's main purpose is to educate users on different facts pertaining to their city/suburb. The app also advocates for a unique game and exercise experience when played as players must visit the different locations to find quest solutions. Players can find quests suited to them by filtering using duration, difficulty and location. Our application also allows users to create quest submissions which other users can then play. Each quest consists of 5 questions which can be answered by visiting a specific location or using trivia knowledge. Users have three attempts for each question, and points are awarded for accuracy. After completing the quest, the user points are added to their account, ranking them on the leaderboard against other users in their city and suburb. Currently, the application is specified for the city of Perth, Australia, however the implementations allow for global expansion!
+
+## Architecture
+
+Explain client side (what users can push) and server side (what server pushes), explain DBs too.
 
 ## Installation
 
@@ -70,12 +74,6 @@ To launch the flask application, run the following command in the WSL terminal. 
 
 <insert instructions on how to use project including examples>
 
-## Contributions
-
-
-## Acknowledgements
-
-<insert general description of each members role / responsibilities>
 
 
 
