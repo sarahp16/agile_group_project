@@ -14,6 +14,8 @@
             <h2> {{ title }}</h2>
             <p>Hint: {{ quest.quest_hint }}</p>
 
+            <p>Hearts: {{ heart_count }}</p>
+
             <form action="/play/{{ quest_id }}/{{ hint_id }}" method="post">
                 <input type="hidden" name="quest_id" value="{{ quest_id }}">
                 <input type="hidden" name="hint_id" value="{{ hint_id }}">
