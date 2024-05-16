@@ -83,7 +83,6 @@ def register():
         new_player = PlayerTracker(user_id = new_user.id, points = form.points.data, quests_completed = form.quests_completed.data)
         db.session.add(new_player)
         db.session.commit()
-        flash('Congratulations, you are now registered!')
         return redirect(url_for('login'))
     return render_template('register.html', form = form)
 
@@ -94,7 +93,7 @@ def login():
     if form.validate_on_submit():
         user = db.session.scalar(sa.select(UsersInfo).where(UsersInfo.email == form.email.data))
         if user is None:
-            flash('Invalid email or password')
+            flash('Invalid email or password!')
             return redirect(url_for('login'))
         if user.password == form.password.data:
             login_user(user)
@@ -154,19 +153,17 @@ def quest(quest_id, hint_id):
         user_answer = request.form.get('answer', '').lower()
         quest_answer = quest['quest_solution']
         if user_answer == quest_answer:
+            flash("Correct!")
             player = PlayerTracker.query.filter_by(user_id=current_user.id).first()
             if heart_count == 3:
                 player.points += 5
                 db.session.commit()
-                print('gold')
             elif heart_count == 2:
                 player.points += 3
                 db.session.commit()
-                print('silver')
             else:
                 player.points += 1
                 db.session.commit()
-                print('bronze')
             next_hint_id = hint_id + 1
             if next_hint_id <= len(quest_hints_solutions):
                 return redirect(url_for('quest', quest_id=quest_id, hint_id=next_hint_id))
@@ -181,6 +178,7 @@ def quest(quest_id, hint_id):
                 session.pop('selected_quest', None)
                 return redirect(url_for('play'))
         else:
+            flash("Incorrect!")
             if session['heart_count'] > 0:
                 session['heart_count'] -= 1
                 heart_count = session['heart_count']
