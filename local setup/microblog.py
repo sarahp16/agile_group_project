@@ -6,7 +6,5 @@ from app.models import UsersInfo
 @app.shell_context_processor
 def make_shell_context():
    return {'sa':sa, 'so':so, 'db':db, 'UsersInfo':UsersInfo}
-
-
 if __name__ == "__main__":
    app.run(debug=True)
