@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Quest</title>
         <link rel="stylesheet" href="{{ url_for('static', filename = 'css/quest.css') }}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     </head>
     <body>
         <a href="/play">
@@ -25,5 +26,30 @@
                 <span>{{ heart_count }}</span>
             </div>
         </div>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                        <div class="flash-message {{ message.category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <script>
+            // Wait for the DOM to be fully loaded
+            document.addEventListener('DOMContentLoaded', function () {
+                // Select all flash message elements
+                var flashMessages = document.querySelectorAll('.flash-message');
+        
+                // Iterate over each flash message element
+                flashMessages.forEach(function (message) {
+                    // Set a timeout to remove the flash message after 2 seconds
+                    setTimeout(function () {
+                        message.remove(); // Remove the flash message from the DOM
+                    }, 1000); // Adjust the time in milliseconds (2 seconds = 2000 milliseconds)
+                });
+            });
+        </script>
     </body>
 </html>
