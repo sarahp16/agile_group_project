@@ -1,48 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
-</head>
-<body>
-  <a href="/base">
-    <button class="home-button">Home</button>
-  </a> 
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Login</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+  </head>
+  <body>
+    <a href="/base">
+      <button class="home-button">Home</button>
+    </a> 
     <div class="container">
-      {% with messages = get_flashed_messages() %}
-        {% if messages %}
-          <div class="flash-messages">
-            {% for message in messages %}
-              <div class="flash-message">{{ message }}</div>
-            {% endfor %}
-          </div>
-        {% endif %}
-      {% endwith %}
-        <h2>Login</h2>
-        <form method="POST">
-            {{ form.hidden_tag() }}
+      <h2>Login</h2>
+      <form method="POST">
+        {{ form.hidden_tag() }}
 
-            <div class="form-group">
-                {{ form.email.label(class="form-label") }}
-                {{ form.email(class="form-control", placeholder="Email") }}
-            </div>
+        <div class="form-group">
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-control", placeholder="Email") }}
+        </div>
 
-            <div class="form-group">
-                {{ form.password.label(class="form-label") }}
-                {{ form.password(class="form-control", placeholder="Password") }}
-            </div>
+        <div class="form-group">
+          {{ form.password.label(class="form-label") }}
+          {{ form.password(class="form-control", placeholder="Password") }}
+        </div> <br>
 
-            <div class="form-group">
-                {{ form.submit(class="btn") }}
-            </div>
+        <div class="form-group">
+            {{ form.submit(class="btn") }}
+        </div>
 
-            <div class="form-group">
-              <h3> Don't have an account yet?</h3> <br>
-              <a href="{{ url_for('register') }}" class="btn">Register</a>
+        <div class="form-group">
+          <h3> Don't have an account yet?</h3> <br>
+          <a href="{{ url_for('register') }}" class="btn">Register</a>
+        </div>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash-messages-login">
+                {% for message in messages %}
+                  <div class="flash-message-login {{ message.category }}">{{ message }}</div>
+                {% endfor %}
             </div>
-        </form>
+          {% endif %}
+        {% endwith %}
+        
+      </form>
     </div>
-</body>
+  </body>
 </html>
