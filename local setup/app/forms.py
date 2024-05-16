@@ -13,7 +13,7 @@ class RegistrationForm(FlaskForm):
         DataRequired(),
         Length(min=8),  
         Regexp(r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])(?=.*[a-zA-Z]).{8,}$',
-        message="Password must contain at least one digit, one uppercase letter, one lowercase letter, one special character, and no spaces.")
+        message="Password must contain at least one digit, one uppercase letter, one lowercase letter, one special character, and no spaces!")
         ])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     city = StringField('City', validators=[DataRequired()])
@@ -35,12 +35,12 @@ class QuestForm(FlaskForm):
                                                 ('30 - 60min', '30 - 60 minutes'),
                                                 ('1 - 3 hours', '1 - 3 hours'),
                                                 ('3+ hours', '3+ hours')],
-                            validators=[DataRequired()])
+                                                validators=[DataRequired()])
     difficulty = SelectField('Difficulty', choices=[('Easy', 'Easy'),
                                                     ('Medium', 'Medium'),
                                                     ('Hard', 'Hard'),
                                                     ('Boss', 'Boss')],
-                            validators=[DataRequired()])
+                                                    validators=[DataRequired()])
     quest_suburb = SelectField('Suburb', choices = [
         ('Across Multiple Suburbs', 'Across Multiple Suburbs'),
         ('Alexander Heights', 'Alexander Heights'),
