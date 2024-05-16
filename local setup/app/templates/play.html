@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Play</title>
         <link rel="stylesheet" href="{{ url_for('static', filename = 'css/base.css') }}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+
     </head>
     <body>
         <div class="sidebar">
@@ -22,25 +24,29 @@
         <div class="main-content">
             <div class="header">
                 <h1>Welcome to the Play page!</h1><br>
-                <p>The game will be located here.</p>
+                <p>To see all quests please press "Filter Quests". Then, pick a quest!</p>
+            <div>
+            <div class="header">
+                <h2>How to Play?</h1><br>
+                <p>Each quest will contain 5 questions. These questions will require you to move around your environment and find solutions! You have 3 attempts for each question. Points are scored according to number of lives used. 3 lives remaining scores you 5 points, 2 lives remaining scores you 3 points and 1 life remaining scores you 1 point. No points are scored if all lives are used. You will only advance to the next question if you answer correctly. Happy questing!</p>
             <div>
             <div class="message">
                 <label for="duration">Select Duration:</label>
                 <select name="duration" id="duration">
                     <option value="">All Durations</option>
-                    <option value="0-10min">0 - 10min</option>
-                    <option value="10-30min">10 - 30min</option>
-                    <option value="30-60min">30 - 60min</option>
-                    <option value="1-3 hours">1 - 3 hours</option>
+                    <option value="0 - 10min">0 - 10min</option>
+                    <option value="10 - 30min">10 - 30min</option>
+                    <option value="30 - 60min">30 - 60min</option>
+                    <option value="1 - 3 hours">1 - 3 hours</option>
                     <option value="3+ hours">3+ hours</option>
                 </select>
                 <label for="difficulty">Select Difficulty:</label>
                 <select name="difficulty" id="difficulty">
                     <option value="">All Difficulties</option>
-                    <option value="easy">Easy</option>
-                    <option value="medium">Medium</option>
-                    <option value="hard">Hard</option>
-                    <option value="boss">Boss</option>
+                    <option value="Easy">Easy</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Hard">Hard</option>
+                    <option value="Boss">Boss</option>
                 </select>
                 <label for="suburb">Select Suburb:</label>
                 <select name="suburb" id="suburb">
@@ -444,8 +450,8 @@
                             var row = $('<tr>');
                             var questNameLink = $('<a>').attr('href', 'play/' + quest.id + '/1').text(quest.title);
                             row.append('<td>' + questNameLink.prop('outerHTML') + '</td>'); 
-                            row.append('<td>' + quest.difficulty + '</td>');
                             row.append('<td>' + quest.duration + '</td>');
+                            row.append('<td>' + quest.difficulty + '</td>');
                             row.append('<td>' + quest.suburb + '</td>');
                             questsTable.append(row);
                         });
