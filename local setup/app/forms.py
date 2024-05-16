@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import IntegerField, StringField, SubmitField, BooleanField, PasswordField, SelectField
-from wtforms.validators import DataRequired, Email, EqualTo, Length, Optional
+from wtforms.validators import DataRequired, Email, EqualTo, Length, Optional, Regexp
 
 from app import db
 from app.models import UsersInfo,Quests, HintsSolutions, PlayerTracker, CompletedQuests
@@ -9,7 +9,12 @@ class RegistrationForm(FlaskForm):
     name = StringField('First Name', validators=[DataRequired()])
     surname = StringField('Last Name', validators=[DataRequired()])
     email = StringField('Email Address', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[
+        DataRequired(),
+        Length(min=8),  
+        Regexp(r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])(?=.*[a-zA-Z]).{8,}$',
+        message="Password must contain at least one digit, one uppercase letter, one lowercase letter, one special character, and no spaces.")
+        ])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     city = StringField('City', validators=[DataRequired()])
     suburb = StringField('Suburb', validators=[DataRequired()])
