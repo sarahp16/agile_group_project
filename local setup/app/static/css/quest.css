@@ -111,9 +111,9 @@ button:hover {
 }
 
 .flash-messages {
-    position: fixed;
-    top: 425px;
-    right: 800px;
+    position: absolute;
+    top: 287px;
+    left: 697px;
     z-index: 1000; /* Adjust the z-index as needed to ensure the messages appear above other content */
 }
 
