@@ -15,7 +15,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif; 
     background-image: url('map2.jpeg');
     background-size: cover;
     background-position: center;
@@ -73,10 +73,24 @@ body {
 
 select {
     margin-bottom: 10px;
-    font-size: 15px; /* Larger font size */
-    font-family: Arial, sans-serif; /* Change the font */
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif; 
     border-radius: 5px;
     padding:5px;
+}
+
+.error-message {
+    color: black;
+    font-weight: bold;
+}
+
+.alert {
+    background-color: #4d7c8c;
+    color: #333;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
 .form-group h3 {
@@ -116,7 +130,7 @@ select {
     border: none;
     padding: 10px 20px;
     font-size: 1em;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif; 
     font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
@@ -145,7 +159,7 @@ select {
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif; 
 }
 
 .back-to-home {
@@ -194,4 +208,21 @@ body {
     border-right: 5px solid transparent;
     border-top: 5px solid #666; 
     pointer-events: none;
+}
+
+.flash-messages-login{
+    font-size: 16px; /* Larger font size */
+    font-family: 'Roboto', sans-serif; 
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: black;
+    font-weight: bold;
+}
+
+.flash-message-login {
+    position: relative;
+    bottom: 186px;
+    right: 10px;
+    z-index: 1000; /* Adjust the z-index as needed to ensure the messages appear above other content */
 }
