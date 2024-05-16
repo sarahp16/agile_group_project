@@ -6,7 +6,6 @@
         <title>Play</title>
         <link rel="stylesheet" href="{{ url_for('static', filename = 'css/base.css') }}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-
     </head>
     <body>
         <div class="sidebar">
@@ -18,7 +17,7 @@
                 <a href="play" class="active">Play Now</a>
                 <a href="create">Create</a>
                 <a href="leaderboard">Leaderboard</a>
-                <a href="logout">Log Out</a>
+                <a href="logout" id="logout">Log Out</a>
             </div>
         </div>
         <div class="main-content">
@@ -417,7 +416,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
                         </tbody>
                     </table>
                 </div>
@@ -469,5 +467,25 @@
                 }
             </script>
         </div>
+        <script>
+            // Wait for the DOM to be fully loaded
+            document.addEventListener('DOMContentLoaded', function () {
+                // Select the logout link
+                var logoutLink = document.getElementById('logout');
+        
+                // Add a click event listener to the logout link
+                logoutLink.addEventListener('click', function (event) {
+                    // Prevent the default link behavior
+                    event.preventDefault();
+        
+                    // Show the logout confirmation alert
+                    var confirmLogout = confirm("Are you sure you want to log out?");
+                    if (confirmLogout) {
+                        // If the user confirms, redirect to the logout URL
+                        window.location.href = logoutLink.getAttribute('href');
+                    }
+                });
+            });
+        </script>
     </body>
 </html>
