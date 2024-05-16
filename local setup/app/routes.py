@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, request, session, flash, jsonify
-from app.forms import RegistrationForm, LoginForm, UsersInfo, QuestForm, Quests, HintsSolutions, PlayerTracker
+from app.forms import RegistrationForm, LoginForm, UsersInfo, QuestForm, Quests, HintsSolutions, PlayerTracker, CompletedQuests
 import sqlalchemy as sa
 from app import app, db
 from flask_login import current_user, login_user, logout_user
@@ -24,7 +24,8 @@ def user():
             user_rank = i + 1
     user_points = db.session.scalar(sa.select(PlayerTracker.points).where(PlayerTracker.user_id == current_user.id))
     completed = db.session.scalar(sa.select(PlayerTracker.quests_completed).where(PlayerTracker.user_id == current_user.id))
-    return render_template('user.html', name =current_user.name, points = user_points, quests_completed = completed, rank = user_rank)
+    created = db.session.query(sa.func.count(Quests.creator_id)).filter(Quests.creator_id == current_user.id).scalar()
+    return render_template('user.html', name =current_user.name, points = user_points, quests_completed = completed, rank = user_rank, quests_created = created)
 
 @app.route('/play/find_game')
 def find_game():
@@ -50,7 +51,7 @@ def leaderboard():
 def create():
     form = QuestForm()
     if form.validate_on_submit():
-        new_quest = Quests(title=form.q_title.data, duration=form.q_duration.data, difficulty=form.difficulty.data, suburb=form.quest_suburb.data, completion=form.completed.data)
+        new_quest = Quests(title=form.q_title.data, duration=form.q_duration.data, difficulty=form.difficulty.data, suburb=form.quest_suburb.data, creator_id = current_user.id)
         db.session.add(new_quest)
         db.session.commit()
         new_quest_id = new_quest.id
@@ -113,7 +114,10 @@ def filter_quests():
     duration = request.args.get('duration')
     difficulty = request.args.get('difficulty')
     suburb = request.args.get('suburb')
-    filtered_quests_query = Quests.query
+    completed_quest_ids = [completed_quest.quest_id for completed_quest in CompletedQuests.query.filter_by(user_id=current_user.id).all()]
+    created_quests_ids = [created_quest.id for created_quest in Quests.query.filter_by(creator_id=current_user.id).all()]
+    excluded_quest_ids = set(completed_quest_ids + created_quests_ids)
+    filtered_quests_query = Quests.query.filter(~Quests.id.in_(excluded_quest_ids))
 
     if duration:
         filtered_quests_query = filtered_quests_query.filter(Quests.duration == duration)
@@ -123,38 +127,56 @@ def filter_quests():
         filtered_quests_query = filtered_quests_query.filter(Quests.suburb == suburb)
 
     filtered_quests = filtered_quests_query.all()
-
     serialized_quests = [{'id': quest.id, 'title': quest.title, 'difficulty': quest.difficulty, 'duration': quest.duration, 'suburb': quest.suburb} for quest in filtered_quests]
 
     return jsonify(serialized_quests)
 
 
 
-@app.route('/play/<int:quest_id>/<int:hint_id>', methods = ['GET', 'POST'])
-def quest(quest_id, hint_id):    
+@app.route('/play/<int:quest_id>/<int:hint_id>', methods=['GET', 'POST'])
+def quest(quest_id, hint_id):
     quest_title = Quests.query.filter_by(id=quest_id).with_entities(Quests.title).scalar()
     all_hints = HintsSolutions.query.filter_by(quest_id=quest_id).all()
     quest_hints_solutions = []
     i = 0
     for hint in all_hints:
         i += 1
-        quest_hints_solutions.append({'hint_id': i, 'quest_hint': hint.hint_text, 'quest_solution': hint.solution_text})
+        quest_hints_solutions.append({'hint_id': i, 'quest_hint': hint.hint_text, 'quest_solution': hint.solution_text.lower()})
 
     quest = next((h for h in quest_hints_solutions if h['hint_id'] == hint_id), None)
+    
+    if 'heart_count' not in session or request.method == 'GET':
+        session['heart_count'] = 3
+
+    heart_count = session['heart_count']
+
     if request.method == 'POST':
         user_answer = request.form.get('answer', '').lower()
-        if user_answer == quest['quest_solution']:
+        quest_answer = quest['quest_solution']
+        if user_answer == quest_answer:
             next_hint_id = hint_id + 1
-            print("id")
             if next_hint_id <= len(quest_hints_solutions):
-                return redirect(f'/play/{quest_id}/{next_hint_id}')
+                return redirect(url_for('quest', quest_id=quest_id, hint_id=next_hint_id))
             else:
-                player = PlayerTracker.query.filter_by(user_id = current_user.id).first()
+                player = PlayerTracker.query.filter_by(user_id=current_user.id).first()
                 if player:
                     player.quests_completed += 1
                     db.session.commit()
+                new_completion = CompletedQuests(quest_id=quest_id, user_id=current_user.id)
+                db.session.add(new_completion)
+                db.session.commit()
                 session.pop('selected_quest', None)
                 return redirect(url_for('play'))
         else:
-            flash('Incorrect answer. Try again.')
-    return render_template('quest.html', quest=quest, title=quest_title, hint_id = hint_id, quest_id = quest_id)
+            if session['heart_count'] > 0:
+                session['heart_count'] -= 1
+                heart_count = session['heart_count']
+            if session['heart_count'] == 0:
+                flash("You've run out of hearts! Moving to the next hint.")
+                next_hint_id = hint_id + 1
+                if next_hint_id <= len(quest_hints_solutions):
+                    return redirect(url_for('quest', quest_id=quest_id, hint_id=next_hint_id))
+                else:
+                    return redirect(url_for('play'))
+                
+    return render_template('quest.html', quest=quest, title=quest_title, hint_id=hint_id, quest_id=quest_id, heart_count=heart_count)
