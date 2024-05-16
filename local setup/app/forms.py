@@ -26,16 +26,16 @@ class LoginForm(FlaskForm):
 class QuestForm(FlaskForm):
     q_title = StringField('Quest Title', validators=[DataRequired(), Length(max=200)])
     q_duration = SelectField('Duration', choices=[('0-10min', '0 - 10 minutes'),
-                                                  ('10-30min', '10 - 30 minutes'),
-                                                  ('30-60min', '30 - 60 minutes'),
-                                                  ('1-3 hours', '1 - 3 hours'),
-                                                  ('3+ hours', '3+ hours')],
-                             validators=[DataRequired()])
+                                                ('10-30min', '10 - 30 minutes'),
+                                                ('30-60min', '30 - 60 minutes'),
+                                                ('1-3 hours', '1 - 3 hours'),
+                                                ('3+ hours', '3+ hours')],
+                            validators=[DataRequired()])
     difficulty = SelectField('Difficulty', choices=[('easy', 'Easy'),
                                                     ('medium', 'Medium'),
                                                     ('hard', 'Hard'),
                                                     ('boss', 'Boss')],
-                             validators=[DataRequired()])
+                            validators=[DataRequired()])
     quest_suburb = SelectField('Suburb', choices = [
         ('Across Multiple Suburbs', 'Across Multiple Suburbs'),
         ('Alexander Heights', 'Alexander Heights'),
