@@ -97,7 +97,7 @@ body, html {
 select {
     margin-bottom: 10px;
     font-size: 15px; /* Larger font size */
-    font-family: Arial, sans-serif; /* Change the font */
+    font-family: 'Roboto', sans-serif; 
     border-radius: 5px;
     padding:5px;
 }
