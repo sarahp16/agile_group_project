@@ -1,30 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeoQuester</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/homepage.css') }}">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <img src="{{ url_for('static', filename = 'css/logo.png') }}" alt="Logo" width="700" height="180">
-        </header>
-        <main>
-            <section class="intro">
-                <h2>Welcome to GeoQuester</h2>
-                <p>GeoQuester is an exciting game where you explore the world through challenging quests.</p>
-            </section>
-            <section class="buttons">
-                <a href="/login">
-                    <button>Login</button>
-                </a>
-                <a href="/register">
-                    <button>Register</button>
-                </a>
-            </section>
-        </main>
-    </div>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>GeoQuester</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename = 'css/homepage.css') }}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <img src="{{ url_for('static', filename = 'css/logo.png') }}" alt="Logo" width="700" height="180">
+            </header>
+            <main>
+                <section class="intro">
+                    <h2>Welcome to GeoQuester</h2>
+                    <p>GeoQuester is an exciting game where you explore the world through challenging quests.</p>
+                </section>
+                <section class="buttons">
+                    <a href="/login">
+                        <button>Login</button>
+                    </a>
+                    <a href="/register">
+                        <button>Register</button>
+                    </a>
+                </section>
+            </main>
+        </div>
+    </body>
 </html>
