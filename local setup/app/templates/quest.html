@@ -13,11 +13,13 @@
         </a>
         <div class="content">
             <h2> {{ title }}</h2>
+            <!--Generalised quest html, hints, solutions loaded-->
             <p>Question {{ hint_number }}: {{ quest.quest_hint }}</p>
             <form action="/play/{{ quest_id }}/{{ hint_id }}" method="post">
                 <input type="hidden" name="quest_id" value="{{ quest_id }}">
                 <input type="hidden" name="hint_id" value="{{ hint_id }}">
                 <label for="answer">Your Answer:</label>
+                <!--Flash messages for incorrect/correct answers-->
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
                         <div class="flash-messages">
@@ -30,24 +32,20 @@
                 <input type="text" id="answer" name="answer" required>
                 <button type="submit">Check</button>
             </form>
+            <!--Visual count for number of tries-->
             <div class="heart-count">
                 <img src="{{ url_for('static', filename = 'css/heart.png') }}" alt="Heart Icon" class="heart-icon">
                 <span>{{ heart_count }}</span>
             </div>
         </div>
-
         <script>
-            // Wait for the DOM to be fully loaded
+            // Removes flash messages after 2 seconds
             document.addEventListener('DOMContentLoaded', function () {
-                // Select all flash message elements
                 var flashMessages = document.querySelectorAll('.flash-message');
-        
-                // Iterate over each flash message element
-                flashMessages.forEach(function (message) {
-                    // Set a timeout to remove the flash message after 2 seconds
+                        flashMessages.forEach(function (message) {
                     setTimeout(function () {
-                        message.remove(); // Remove the flash message from the DOM
-                    }, 2000); // Adjust the time in milliseconds (2 seconds = 2000 milliseconds)
+                        message.remove(); 
+                    }, 2000); 
                 });
             });
         </script>
