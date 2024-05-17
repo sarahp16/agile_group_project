@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     </head>
     <body>
+        <!--Sidebar options-->>
         <div class="sidebar">
             <div class="logo">
                 <img src="{{ url_for('static', filename = 'css/logo.png') }}" alt="Logo" width="230" height="60">
@@ -29,7 +30,9 @@
                 <h2>How to Play?</h1><br>
                 <p>Each quest will contain 5 questions. These questions will require you to move around your environment and find solutions! You have 3 attempts for each question. Points are scored according to number of lives used. 3 lives remaining scores you 5 points, 2 lives remaining scores you 3 points and 1 life remaining scores you 1 point. No points are scored if all lives are used. You will only advance to the next question if you answer correctly. Happy questing!</p>
             <div>
+            <!--User Quest Filters-->>
             <div class="message">
+                <!--Filter by duration-->>
                 <label for="duration">Select Duration:</label>
                 <select name="duration" id="duration">
                     <option value="">All Durations</option>
@@ -39,6 +42,7 @@
                     <option value="1 - 3 hours">1 - 3 hours</option>
                     <option value="3+ hours">3+ hours</option>
                 </select>
+                <!--Filter by difficulty-->>
                 <label for="difficulty">Select Difficulty:</label>
                 <select name="difficulty" id="difficulty">
                     <option value="">All Difficulties</option>
@@ -47,6 +51,7 @@
                     <option value="Hard">Hard</option>
                     <option value="Boss">Boss</option>
                 </select>
+                <!--Filter by suburb-->>
                 <label for="suburb">Select Suburb:</label>
                 <select name="suburb" id="suburb">
                     <option value="">All Suburbs</option>
@@ -404,6 +409,7 @@
                     <option value='Yangebup'>Yangebup</option>
                     <option value='Yokine'>Yokine</option>
                 </select>
+                <!--button for filter submission-->>
                 <button id="filterButton">Filter Quests</button>
                 <div class="tables">
                     <table id="questsTable">
@@ -420,7 +426,7 @@
                     </table>
                 </div>
             </div>
-
+            <!--Functions for filtration-->>
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script>
                 $(document).ready(function() {
@@ -429,15 +435,16 @@
                         filterQuests(true);
                     });
                 });
+                //Sets flag to false, all quests loaded
                 function loadAllQuests() {
                     filterQuests(false); 
                 }
-
+                //Filters by user inputs
                 function filterQuests() {
                     var duration = $('#duration').val();
                     var difficulty = $('#difficulty').val();
                     var suburb = $('#suburb').val();
-
+                    //Communicates with database
                     $.ajax({
                         url: '/filter',
                         type: 'GET',
@@ -449,7 +456,7 @@
                         success: function(response) {
                             var questsTable = $('#questsTable tbody');
                             questsTable.empty(); 
-
+                            //Adds table information from database
                             $.each(response, function(index, quest) {
                                 var row = $('<tr>');
                                 var questNameLink = $('<a>').attr('href', 'play/' + quest.id + '/1').text(quest.title);
@@ -468,16 +475,12 @@
             </script>
         </div>
         <script>
-            // Wait for the DOM to be fully loaded
+            // Logout alert function
             document.addEventListener('DOMContentLoaded', function () {
-                // Select the logout link
                 var logoutLink = document.getElementById('logout');
-        
-                // Add a click event listener to the logout link
                 logoutLink.addEventListener('click', function (event) {
                     // Prevent the default link behavior
                     event.preventDefault();
-        
                     // Show the logout confirmation alert
                     var confirmLogout = confirm("Are you sure you want to log out?");
                     if (confirmLogout) {
