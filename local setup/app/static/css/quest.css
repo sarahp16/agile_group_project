@@ -1,37 +1,35 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url('mountains.png'); /* Replace 'background.jpg' with your image path */
+    background-image: url('mountains.png'); 
     background-size: cover;
     background-position: center;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative; /* Required for absolute positioning */
+    position: relative;
 }
 
 .content {
-    background-color: rgba(200, 200, 200, 0.8); /* Grey color with some transparency */
-    padding: 40px; /* Increased padding */
+    background-color: rgba(200, 200, 200, 0.8);
+    padding: 40px; 
     text-align: center;
-    border-radius: 20px; /* Increased border radius */
-    width: 60%; /* Adjust the width as per your preference */
-    max-width: 600px; /* Limiting the max-width to keep it from becoming too wide */
-    position: relative; /* Required for the heart count to be positioned relative to this */
+    border-radius: 20px; 
+    width: 60%;
+    max-width: 600px; 
+    position: relative; 
 }
-
-
 
 h2 {
     margin-top: 0;
-    font-size: 2.5em; /* Larger font size */
+    font-size: 2.5em; 
     font-family: 'Roboto', sans-serif;
 }
 
 p {
     margin-bottom: 20px;
-    font-size: 1.2em; /* Larger font size */
+    font-size: 1.2em; 
     font-family: 'Roboto', sans-serif;
 }
 
@@ -43,32 +41,33 @@ form {
 
 label {
     margin-bottom: 10px;
-    font-size: 1.2em; /* Larger font size */
+    font-size: 1.2em; 
     font-family: 'Roboto', sans-serif;
 }
 
 input[type="text"] {
     width: 100%;
-    padding: 15px; /* Increased padding */
-    margin-bottom: 20px; /* Increased margin */
-    box-sizing: border-box; /* Ensure padding is included in the width */
-    font-size: 1.2em; /* Larger font size */
+    padding: 15px; 
+    margin-bottom: 20px; 
+    box-sizing: border-box; 
+    font-size: 1.2em; 
     font-family: 'Roboto', sans-serif;
 }
 
+/*Button formatting and animations*/
 button {
-    padding: 15px 30px; /* Increased padding */
-    background-color: #4d7c8c; /* Blue color for the button */
+    padding: 15px 30px; 
+    background-color: #4d7c8c; 
     color: #fff;
     border: none;
-    border-radius: 8px; /* Increased border radius */
+    border-radius: 8px; 
     cursor: pointer;
-    font-size: 1.2em; /* Larger font size */
+    font-size: 1.2em; 
     font-family: 'Roboto', sans-serif;
 }
 
 button:hover {
-    background-color: #0f4d4d; /* Darker shade of blue on hover */
+    background-color: #0f4d4d; 
 }
 
 .quit-button {
@@ -84,6 +83,7 @@ button:hover {
     font-size: 1.2em;
 }
 
+/*Formatting for hearts, number of tries*/
 .heart-count {
     position: absolute;
     bottom: 30px;
@@ -94,14 +94,14 @@ button:hover {
 }
 
 .heart-icon {
-    width: 65px; /* Adjust size as needed */
-    height: 60px; /* Adjust size as needed */
-    margin-right: 5px; /* Add some spacing between the heart icon and the count */
+    width: 65px; 
+    height: 60px; 
+    margin-right: 5px; 
     position: relative;
 }
 
 .heart-count span {
-    font-size: 1.2em; /* Adjust font size as needed */
+    font-size: 1.2em; 
     position: absolute;
     top: 0;
     left: 0;
@@ -114,11 +114,11 @@ button:hover {
 
 .flash-messages {
     position: relative;
-    z-index: 1000; /* Adjust the z-index as needed to ensure the messages appear above other content */
+    z-index: 1000; 
 }
 
 .flash-message {
-    font-size: 1.2em; /* Larger font size */
+    font-size: 1.2em; 
     font-family: 'Roboto', sans-serif;
     padding: 10px;
     margin-bottom: 10px;
