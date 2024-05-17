@@ -5,6 +5,7 @@ from wtforms.validators import DataRequired, Email, EqualTo, Length, Optional, R
 from app import db
 from app.models import UsersInfo,Quests, HintsSolutions, PlayerTracker, CompletedQuests
 
+# Form for Registration
 class RegistrationForm(FlaskForm):
     name = StringField('First Name', validators=[DataRequired()])
     surname = StringField('Last Name', validators=[DataRequired()])
@@ -22,12 +23,14 @@ class RegistrationForm(FlaskForm):
     quests_completed = IntegerField('Quests Completed')
     submit = SubmitField('Sign Up')
 
+#Form for Login
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Sign In')
     register = SubmitField('Register')
 
+#Form for creating a Quest
 class QuestForm(FlaskForm):
     q_title = StringField('Quest Title', validators=[DataRequired(), Length(max=200)])
     q_duration = SelectField('Duration', choices=[('0 - 10min', '0 - 10 minutes'),
