@@ -6,7 +6,7 @@
         <title>Play</title>
         <link rel="stylesheet" href="{{ url_for('static', filename = 'css/forms.css') }}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-
+        <!--User alerted when registration complete, only if form valid and submitted-->
         <script>
             function handleSubmit() {
                 var form = document.getElementById('register-form');
@@ -25,22 +25,24 @@
                 <h2>Register</h2>
                 <form id="register-form" method="POST" action="" novalidate>
                     {{ form.hidden_tag() }}
-        
+                    <!--User first name-->
                     <div class="form-group">
                         {{ form.name.label(class="form-label") }}<br>
                         {{ form.name(class="form-control", placeholder="First Name") }}
                     </div>
-        
+                    <!--User last name-->
                     <div class="form-group">
                         {{ form.surname.label(class="form-label") }}<br>
                         {{ form.surname(class="form-control", placeholder="Last Name") }}
                     </div>
-        
+                    <!--User email-->
                     <div class="form-group">
                         {{ form.email.label(class="form-label") }}<br>
                         {{ form.email(class="form-control", placeholder="Email Address") }}
                     </div>
+                    <!--Password strength notice-->
                     <h4> Password must contain one lowercase letter, one uppercase letter, one special character and one number. Must be 8 or more characters long.</h4>
+                    <!--User password -->
                     <div class="form-group">
                         {{ form.password.label(class="form-label") }}<br>
                         {{ form.password(class="form-control", placeholder="Password") }}
@@ -48,22 +50,22 @@
                             <span style="color: black; font-weight:bold;">{{ error }}</span>
                         {% endfor %}
                     </div>
-        
+                    <!--User password confirmation-->
                     <div class="form-group">
                         {{ form.confirm_password.label(class="form-label") }}<br>
                         {{ form.confirm_password(class="form-control", placeholder="Confirm Password") }}
                     </div>
-        
+                    <!--User city -->
                     <div class="form-group">
                         {{ form.city.label(class="form-label") }}<br>
                         {{ form.city(class="form-control", placeholder="City") }}
                     </div>
-        
+                    <!--User suburb -->
                     <div class="form-group">
                         {{ form.suburb.label(class="form-label") }}<br>
                         {{ form.suburb(class="form-control", placeholder="Suburb") }}
                     </div>
-        
+                    <!--Form submission -->
                     <div class="form-group action">
                         {{ form.submit(class="btn", onclick="handleSubmit()")}}
                     </div>
