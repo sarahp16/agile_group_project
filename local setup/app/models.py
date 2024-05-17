@@ -7,6 +7,7 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
 
+#Model for UsersInfo with back populating relationships
 class UsersInfo(UserMixin, db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key = True, autoincrement=True)
     name: so.Mapped[str] = so.mapped_column(sa.String(64), index = True)
@@ -32,7 +33,7 @@ def load_user(id):
     return db.session.get(UsersInfo, id)
 
 
-
+#Model for Quests with back populating relationships and Foreign Keys
 class Quests(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key = True, autoincrement=True)
     title: so.Mapped[str] = so.mapped_column(sa.String(200), index = True)
@@ -45,6 +46,7 @@ class Quests(db.Model):
     hintsolution: so.WriteOnlyMapped['HintsSolutions'] = so.relationship(back_populates='quest')
     completedquests: so.Mapped['CompletedQuests'] = so.relationship(back_populates="completion")
 
+#Model for Hints and Solutions with back populating relationships and Foreign Keys
 class HintsSolutions(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key = True, autoincrement=True)
     hint_text: so.Mapped[str] = so.mapped_column(sa.String(300), index = True)
@@ -53,6 +55,7 @@ class HintsSolutions(db.Model):
 
     quest: so.Mapped[Quests] = so.relationship(back_populates="hintsolution")
 
+#Model for Player points and number of quests completed with back populating relationships and Foreign Keys
 class PlayerTracker(db.Model):
     user_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(UsersInfo.id), primary_key = True, index = True)
     points: so.Mapped[int] = so.mapped_column(index = True, default = 0)
@@ -60,6 +63,7 @@ class PlayerTracker(db.Model):
 
     user = so.relationship('UsersInfo', back_populates='player_tracker')
 
+#Model for completed quests with foreign keys and back populating relationships
 class CompletedQuests(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key = True, autoincrement=True)
     quest_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(Quests.id), index = True)
