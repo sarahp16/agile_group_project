@@ -194,16 +194,16 @@ def quest(quest_id, hint_id):
                 session.pop('selected_quest', None)
                 return redirect(url_for('play'))
         else:
-            flash("Incorrect!")
             if session['heart_count'] > 0:
                 session['heart_count'] -= 1
                 heart_count = session['heart_count']
             if session['heart_count'] == 0:
-                flash("You've run out of hearts! Moving to the next hint.")
+                flash("No tries left! Onto the next hint.")
                 next_hint_id = hint_id + 1
                 if next_hint_id <= len(quest_hints_solutions):
                     return redirect(url_for('quest', quest_id=quest_id, hint_id=next_hint_id))
                 else:
                     return redirect(url_for('play'))
-                
+            flash("Incorrect!")
+
     return render_template('quest.html', quest=quest, title=quest_title, hint_id=hint_id, quest_id=quest_id, heart_count=heart_count, hint_number = hint_id)
