@@ -27,25 +27,39 @@ def user():
     created = db.session.query(sa.func.count(Quests.creator_id)).filter(Quests.creator_id == current_user.id).scalar()
     return render_template('user.html', name =current_user.name, points = user_points, quests_completed = completed, rank = user_rank, quests_created = created)
 
-@app.route('/play/find_game')
-def find_game():
-    return render_template('find_game.html')
-
 @app.route('/play')
 def play():
     return render_template('play.html')
 
 @app.route('/leaderboard')
 def leaderboard():
-    user_city = current_user.city
-    players_info = UsersInfo.query.filter_by(city=user_city).all()
-    players_with_points = []
-    for player_info in players_info:
-        player = PlayerTracker.query.filter_by(user_id=player_info.id).first()
-        if player:
-            players_with_points.append({'name': player_info.name, 'points': player.points})
-    sorted_players = sorted(players_with_points, key=lambda x: x['points'], reverse=True)
-    return render_template('leaderboard.html', city=user_city, players=sorted_players)
+    return render_template('leaderboard.html')
+
+@app.route('/filter_users', methods=['GET'])
+def filter_users():
+    city = request.args.get('city')
+    suburb = request.args.get('suburb')
+    
+    # Joining PlayerTracker and UsersInfo tables to retrieve user data
+    query = db.session.query(PlayerTracker, UsersInfo).join(UsersInfo, PlayerTracker.user_id == UsersInfo.id)
+    
+    # Filtering by city and suburb if provided
+    if city:
+        query = query.filter(UsersInfo.city == city)
+    if suburb:
+        query = query.filter(UsersInfo.suburb == suburb)
+    
+    # Sorting users based on points in descending order to determine their rank
+    query = query.order_by(PlayerTracker.points.desc())
+    
+    # Fetching all users with their corresponding points and additional information
+    users_data = query.all()
+    
+    # Serializing user data including rank, name, and points
+    serialized_users = [{'rank': idx + 1, 'name': user_info.name, 'points': player_tracker.points, 'user_id': player_tracker.user_id} for idx, (player_tracker, user_info) in enumerate(users_data)]
+    
+    return jsonify(serialized_users)
+
 
 @app.route('/create', methods=['GET', 'POST'])
 def create():
@@ -192,4 +206,4 @@ def quest(quest_id, hint_id):
                 else:
                     return redirect(url_for('play'))
                 
-    return render_template('quest.html', quest=quest, title=quest_title, hint_id=hint_id, quest_id=quest_id, heart_count=heart_count)
+    return render_template('quest.html', quest=quest, title=quest_title, hint_id=hint_id, quest_id=quest_id, heart_count=heart_count, hint_number = hint_id)
