@@ -5,7 +5,8 @@ body, html {
     height: 100%;
     margin: 0;
     background-image: url('map.png');
-    background-size: cover;
+    background-size: 130%;
+    background-position: center;
     position: relative;
     background-attachment: fixed;
 }
@@ -100,6 +101,12 @@ select {
     font-family: 'Roboto', sans-serif; 
     border-radius: 5px;
     padding:5px;
+}
+
+label{
+    font-size: 17px; /* Larger font size */
+    font-family: 'Roboto', sans-serif; 
+    margin-left: 3px;
 }
 
 #filterButton {
