@@ -1,76 +1,480 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Leaderboard</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename = 'css/base.css') }}">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-    </head>
-    <body>
-        <div class="dashboard">
-            <div class="sidebar">
-                <div class="logo">
-                    <img src="{{ url_for('static', filename = 'css/logo.png') }}" alt="Logo" width="230" height="60">
-                </div>
-                <div class="menu">
-                    <a href="user">Home</a>
-                    <a href="play">Play Now</a>
-                    <a href="create">Create</a>
-                    <a href="leaderboard" class="active">Leaderboard</a>
-                    <a href="logout" id="logout">Log Out</a>
-                </div>
-            </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/base.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+</head>
+<body>
+<div class="dashboard">
+    <div class="sidebar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename = 'css/logo.png') }}" alt="Logo" width="230" height="60">
+        </div>
+        <div class="menu">
+            <a href="user">Home</a>
+            <a href="play">Play Now</a>
+            <a href="create">Create</a>
+            <a href="leaderboard" class="active">Leaderboard</a>
+            <a href="logout" id="logout">Log Out</a>
+        </div>
+    </div>
 
-            <div class="main-content">
-                <div class="header">
-                    <h1>Welcome to the Leaderboard page!</h1><br>
-                    <p>See your ranking!</p>
-                </div>
+    <div class="main-content">
+        <div class="header">
+            <h1>Welcome to the Leaderboard page!</h1><br>
+            <p>See your ranking!</p>
+        </div>
 
+        <div class="message">
+            <label for="city">Select City:</label>
+            <select name="duration" id="duration">
+                <option value="">All Cities</option>
+                <option value="Perth">Perth</option>
+            </select>
+            <label for="suburb">Select Suburb:</label>
+            <select name="suburb" id="suburb">
+                <option value="">All Suburbs</option>
+                <option value='Across Multiple Suburbs'>Across Multiple Suburbs</option>
+                <option value='Alexander Heights'>Alexander Heights</option>
+                <option value='Alfred Cove'>Alfred Cove</option>
+                <option value='Alkimos'>Alkimos</option>
+                <option value='Anketell'>Anketell</option>
+                <option value='Applecross'>Applecross</option>
+                <option value='Ardross'>Ardross</option>
+                <option value='Armadale'>Armadale</option>
+                <option value='Ascot'>Ascot</option>
+                <option value='Ashby'>Ashby</option>
+                <option value='Ashfield'>Ashfield</option>
+                <option value='Attadale'>Attadale</option>
+                <option value='Atwell'>Atwell</option>
+                <option value='Aubin Grove'>Aubin Grove</option>
+                <option value='Aveley'>Aveley</option>
+                <option value='Bailup'>Bailup</option>
+                <option value='Balcatta'>Balcatta</option>
+                <option value='Baldivis'>Baldivis</option>
+                <option value='Balga'>Balga</option>
+                <option value='Ballajura'>Ballajura</option>
+                <option value='Banjup'>Banjup</option>
+                <option value='Banksia Grove'>Banksia Grove</option>
+                <option value='Baskerville'>Baskerville</option>
+                <option value='Bassendean'>Bassendean</option>
+                <option value='Bateman'>Bateman</option>
+                <option value='Bayswater'>Bayswater</option>
+                <option value='Beaconsfield'>Beaconsfield</option>
+                <option value='Beckenham'>Beckenham</option>
+                <option value='Bedford'>Bedford</option>
+                <option value='Bedfordale'>Bedfordale</option>
+                <option value='Beechboro'>Beechboro</option>
+                <option value='Beechina'>Beechina</option>
+                <option value='Beeliar'>Beeliar</option>
+                <option value='Beldon'>Beldon</option>
+                <option value='Belhus'>Belhus</option>
+                <option value='Bellevue'>Bellevue</option>
+                <option value='Belmont'>Belmont</option>
+                <option value='Bennett Springs'>Bennett Springs</option>
+                <option value='Bentley'>Bentley</option>
+                <option value='Bertram'>Bertram</option>
+                <option value='Bibra Lake'>Bibra Lake</option>
+                <option value='Bickley'>Bickley</option>
+                <option value='Bicton'>Bicton</option>
+                <option value='Booragoon'>Booragoon</option>
+                <option value='Boya'>Boya</option>
+                <option value='Brabham'>Brabham</option>
+                <option value='Brentwood'>Brentwood</option>
+                <option value='Brigadoon'>Brigadoon</option>
+                <option value='Brookdale'>Brookdale</option>
+                <option value='Bull Creek'>Bull Creek</option>
+                <option value='Bullsbrook'>Bullsbrook</option>
+                <option value='Burns Beach'>Burns Beach</option>
+                <option value='Burswood'>Burswood</option>
+                <option value='Butler'>Butler</option>
+                <option value='Byford'>Byford</option>
+                <option value='Calista'>Calista</option>
+                <option value='Camillo'>Camillo</option>
+                <option value='Canning Vale'>Canning Vale</option>
+                <option value='Cannington'>Cannington</option>
+                <option value='Carabooda'>Carabooda</option>
+                <option value='Cardup'>Cardup</option>
+                <option value='Carine'>Carine</option>
+                <option value='Carlisle'>Carlisle</option>
+                <option value='Carmel'>Carmel</option>
+                <option value='Carramar'>Carramar</option>
+                <option value='Casuarina'>Casuarina</option>
+                <option value='Caversham'>Caversham</option>
+                <option value='Champion Lakes'>Champion Lakes</option>
+                <option value='Chidlow'>Chidlow</option>
+                <option value='Churchlands'>Churchlands</option>
+                <option value='City Beach'>City Beach</option>
+                <option value='Claremont'>Claremont</option>
+                <option value='Clarkson'>Clarkson</option>
+                <option value='Clifton Park'>Clifton Park</option>
+                <option value='Cloverdale'>Cloverdale</option>
+                <option value='Cockburn Central'>Cockburn Central</option>
+                <option value='Como'>Como</option>
+                <option value='Connolly'>Connolly</option>
+                <option value='Coogee'>Coogee</option>
+                <option value='Coolbellup'>Coolbellup</option>
+                <option value='Coolbinia'>Coolbinia</option>
+                <option value='Cooloongup'>Cooloongup</option>
+                <option value='Cottesloe'>Cottesloe</option>
+                <option value='Craigie'>Craigie</option>
+                <option value='Crawley'>Crawley</option>
+                <option value='Cullacabardee'>Cullacabardee</option>
+                <option value='Currambine'>Currambine</option>
+                <option value='Daglish'>Daglish</option>
+                <option value='Dalkeith'>Dalkeith</option>
+                <option value='Darch'>Darch</option>
+                <option value='Darling Downs'>Darling Downs</option>
+                <option value='Darlington'>Darlington</option>
+                <option value='Dayton'>Dayton</option>
+                <option value='Dianella'>Dianella</option>
+                <option value='Doubleview'>Doubleview</option>
+                <option value='Duncraig'>Duncraig</option>
+                <option value='East Cannington'>East Cannington</option>
+                <option value='East Fremantle'>East Fremantle</option>
+                <option value='East Perth'>East Perth</option>
+                <option value='East Rockingham'>East Rockingham</option>
+                <option value='East Victoria Park'>East Victoria Park</option>
+                <option value='Eden Hill'>Eden Hill</option>
+                <option value='Edgewater'>Edgewater</option>
+                <option value='Eglinton'>Eglinton</option>
+                <option value='Ellenbrook'>Ellenbrook</option>
+                <option value='Embleton'>Embleton</option>
+                <option value='Ferndale'>Ferndale</option>
+                <option value='Floreat'>Floreat</option>
+                <option value='Forrestdale'>Forrestdale</option>
+                <option value='Forrestfield'>Forrestfield</option>
+                <option value='Fremantle'>Fremantle</option>
+                <option value='Garden Island'>Garden Island</option>
+                <option value='Gidgegannup'>Gidgegannup</option>
+                <option value='Girrawheen'>Girrawheen</option>
+                <option value='Glen Forrest'>Glen Forrest</option>
+                <option value='Glendalough'>Glendalough</option>
+                <option value='Gnangara'>Gnangara</option>
+                <option value='Golden Bay'>Golden Bay</option>
+                <option value='Gooseberry Hill'>Gooseberry Hill</option>
+                <option value='Gosnells'>Gosnells</option>
+                <option value='Greenmount'>Greenmount</option>
+                <option value='Greenwood'>Greenwood</option>
+                <option value='Guildford'>Guildford</option>
+                <option value='Gwelup'>Gwelup</option>
+                <option value='Hacketts Gully'>Hacketts Gully</option>
+                <option value='Hamersley'>Hamersley</option>
+                <option value='Hamilton Hill'>Hamilton Hill</option>
+                <option value='Hammond Park'>Hammond Park</option>
+                <option value='Harrisdale'>Harrisdale</option>
+                <option value='Haynes'>Haynes</option>
+                <option value='Hazelmere'>Hazelmere</option>
+                <option value='Heathridge'>Heathridge</option>
+                <option value='Helena Valley'>Helena Valley</option>
+                <option value='Henderson'>Henderson</option>
+                <option value='Henley Brook'>Henley Brook</option>
+                <option value='Herne Hill'>Herne Hill</option>
+                <option value='High Wycombe'>High Wycombe</option>
+                <option value='Highgate'>Highgate</option>
+                <option value='Hilbert'>Hilbert</option>
+                <option value='Hillarys'>Hillarys</option>
+                <option value='Hillman'>Hillman</option>
+                <option value='Hilton'>Hilton</option>
+                <option value='Hocking'>Hocking</option>    
+                <option value='Hope Valley'>Hope Valley</option>
+                <option value='Hopeland'>Hopeland</option>
+                <option value='Hovea'>Hovea</option>
+                <option value='Huntingdale'>Huntingdale</option>
+                <option value='Illawarra'>Illawarra</option>
+                <option value='Iluka'>Iluka</option>
+                <option value='Inglewood'>Inglewood</option>
+                <option value='Innaloo'>Innaloo</option>
+                <option value='Jandabup'>Jandabup</option>
+                <option value='Jandakot'>Jandakot</option>
+                <option value='Jane Brook'>Jane Brook</option>
+                <option value='Jarrahdale'>Jarrahdale</option>
+                <option value='Jindalee'>Jindalee</option>
+                <option value='Jolimont'>Jolimont</option>
+                <option value='Joondalup'>Joondalup</option>
+                <option value='Joondanna'>Joondanna</option>
+                <option value='Kalamunda'>Kalamunda</option>
+                <option value='Kallaroo'>Kallaroo</option>
+                <option value='Karawara'>Karawara</option>
+                <option value='Kardinya'>Kardinya</option>
+                <option value='Karnup'>Karnup</option>
+                <option value='Karragullen'>Karragullen</option>
+                <option value='Karrakatta'>Karrakatta</option>
+                <option value='Karrakup'>Karrakup</option>
+                <option value='Karrinyup'>Karrinyup</option>
+                <option value='Kelmscott'>Kelmscott</option>
+                <option value='Kelscott'>Kelscott</option>
+                <option value='Kensington'>Kensington</option>
+                <option value='Kenwick'>Kenwick</option>
+                <option value='Kewdale'>Kewdale</option>
+                <option value='Keysbrook'>Keysbrook</option>
+                <option value='Kiara'>Kiara</option>
+                <option value='Kings Park'>Kings Park</option>
+                <option value='Kingsley'>Kingsley</option>
+                <option value='Kinross'>Kinross</option>
+                <option value='Koondoola'>Koondoola</option>
+                <option value='Koongamia'>Koongamia</option>
+                <option value='Kwinana Beach'>Kwinana Beach</option>
+                <option value='Kwinana Town Centre'>Kwinana Town Centre</option>
+                <option value='Landsdale'>Landsdale</option>
+                <option value='Langford'>Langford</option>
+                <option value='Lathlain'>Lathlain</option>
+                <option value='Leda'>Leda</option>
+                <option value='Leederville'>Leederville</option>
+                <option value='Leeming'>Leeming</option>
+                <option value='Lesmurdie'>Lesmurdie</option>
+                <option value='Lexia'>Lexia</option>
+                <option value='Lockridge'>Lockridge</option>
+                <option value='Lynwood'>Lynwood</option>
+                <option value='Maddington'>Maddington</option>
+                <option value='Madeley'>Madeley</option>
+                <option value='Mahogany Creek'>Mahogany Creek</option>
+                <option value='Maida Vale'>Maida Vale</option>
+                <option value='Malaga'>Malaga</option>
+                <option value='Mandogalup'>Mandogalup</option>
+                <option value='Mandurah Quays'>Mandurah Quays</option>
+                <option value='Manning'>Manning</option>
+                <option value='Marangaroo'>Marangaroo</option>
+                <option value='Mardella'>Mardella</option>
+                <option value='Mariginiup'>Mariginiup</option>
+                <option value='Marmion'>Marmion</option>
+                <option value='Martin'>Martin</option>
+                <option value='Maylands'>Maylands</option>
+                <option value='Medina'>Medina</option>
+                <option value='Melville'>Melville</option>
+                <option value='Menora'>Menora</option>
+                <option value='Merriwa'>Merriwa</option>
+                <option value='Middle Swan'>Middle Swan</option>
+                <option value='Midland'>Midland</option>
+                <option value='Midvale'>Midvale</option>
+                <option value='Millendon'>Millendon</option>
+                <option value='Mindarie'>Mindarie</option>
+                <option value='Mirrabooka'>Mirrabooka</option>
+                <option value='Morley'>Morley</option>
+                <option value='Mosman Park'>Mosman Park</option>
+                <option value='Mount Claremont'>Mount Claremont</option>
+                <option value='Mount Hawthorn'>Mount Hawthorn</option>
+                <option value='Mount Helena'>Mount Helena</option>
+                <option value='Mount Lawley'>Mount Lawley</option>
+                <option value='Mount Nasura'>Mount Nasura</option>
+                <option value='Mount Pleasant'>Mount Pleasant</option>
+                <option value='Mount Richon'>Mount Richon</option>
+                <option value='Mullaloo'>Mullaloo</option>
+                <option value='Mundaring'>Mundaring</option>
+                <option value='Mundijong'>Mundijong</option>
+                <option value='Munster'>Munster</option>
+                <option value='Murdoch'>Murdoch</option>
+                <option value='Myaree'>Myaree</option>
+                <option value='Naval Base'>Naval Base</option>
+                <option value='Nedlands'>Nedlands</option>
+                <option value='Neerabup'>Neerabup</option>
+                <option value='Nollamara'>Nollamara</option>
+                <option value='Noranda'>Noranda</option>
+                <option value='North Beach'>North Beach</option>
+                <option value='North Coogee'>North Coogee</option>
+                <option value='North Fremantle'>North Fremantle</option>
+                <option value='North Lake'>North Lake</option>
+                <option value='North Perth'>North Perth</option>
+                <option value='Northbridge'>Northbridge</option>
+                <option value='Nowergup'>Nowergup</option>
+                <option value='Oakford'>Oakford</option>
+                <option value='Ocean Reef'>Ocean Reef</option>
+                <option value='OConnor'>O'Connor</option>
+                <option value='Oldbury'>Oldbury</option>
+                <option value='Orange Grove'>Orange Grove</option>
+                <option value='Orelia'>Orelia</option>
+                <option value='Osborne Park'>Osborne Park</option>
+                <option value='Padbury'>Padbury</option>
+                <option value='Palmyra'>Palmyra</option>
+                <option value='Parkerville'>Parkerville</option>
+                <option value='Parkwood'>Parkwood</option>
+                <option value='Parmelia'>Parmelia</option>
+                <option value='Paulls Valley'>Paulls Valley</option>
+                <option value='Pearsall'>Pearsall</option>
+                <option value='Peppermint Grove'>Peppermint Grove</option>
+                <option value='Peron'>Peron</option>
+                <option value='Perth (CBD)'>Perth (CBD)</option>
+                <option value='Perth Airport'>Perth Airport</option>
+                <option value='Piara Waters'>Piara Waters</option>
+                <option value='Pickering Brook'>Pickering Brook</option>
+                <option value='Piesse Brook'>Piesse Brook</option>
+                <option value='Pinjar'>Pinjar</option>
+                <option value='Port Kennedy'>Port Kennedy</option>
+                <option value='Postans'>Postans</option>
+                <option value='Queens Park'>Queens Park</option>
+                <option value='Quinns Rocks'>Quinns Rocks</option>
+                <option value='Redcliffe'>Redcliffe</option>
+                <option value='Reservoir'>Reservoir</option>
+                <option value='Ridgewood'>Ridgewood</option>
+                <option value='Riverton'>Riverton</option>
+                <option value='Rivervale'>Rivervale</option>
+                <option value='Rockingham'>Rockingham</option>
+                <option value='Rockingham Beach'>Rockingham Beach</option>
+                <option value='Roleystone'>Roleystone</option>
+                <option value='Rossmoyne'>Rossmoyne</option>
+                <option value='Rottnest Island'>Rottnest Island</option>
+                <option value='Safety Bay'>Safety Bay</option>
+                <option value='Salter Point'>Salter Point</option>
+                <option value='Samson'>Samson</option>
+                <option value='Sawyers Valley'>Sawyers Valley</option>
+                <option value='Scarborough'>Scarborough</option>
+                <option value='Secret Harbour'>Secret Harbour</option>
+                <option value='Serpentine'>Serpentine</option>
+                <option value='Seville Grove'>Seville Grove</option>
+                <option value='Shelley'>Shelley</option>
+                <option value='Shenton Park'>Shenton Park</option>
+                <option value='Shoalwater'>Shoalwater</option>
+                <option value='Sinagra'>Sinagra</option>
+                <option value='Singleton'>Singleton</option>
+                <option value='Sorrento'>Sorrento</option>
+                <option value='South Fremantle'>South Fremantle</option>
+                <option value='South Guildford'>South Guildford</option>
+                <option value='South Lake'>South Lake</option>
+                <option value='South Perth'>South Perth</option>
+                <option value='Southern River'>Southern River</option>
+                <option value='Spearwood'>Spearwood</option>
+                <option value='St James'>St James</option>
+                <option value='Stirling'>Stirling</option>
+                <option value='Stoneville'>Stoneville</option>
+                <option value='Stratton'>Stratton</option>
+                <option value='Subiaco'>Subiaco</option>
+                <option value='Success'>Success</option>
+                <option value='Swan View'>Swan View</option>
+                <option value='Swanbourne'>Swanbourne</option>
+                <option value='Tapping'>Tapping</option>
+                <option value='The Lakes'>The Lakes</option>
+                <option value='The Spectacles'>The Spectacles</option>
+                <option value='The Vines'>The Vines</option>
+                <option value='Thornlie'>Thornlie</option>
+                <option value='Trigg'>Trigg</option>
+                <option value='Tuart Hill'>Tuart Hill</option>
+                <option value='Two Rocks'>Two Rocks</option>
+                <option value='Upper Swan'>Upper Swan</option>
+                <option value='Victoria Park'>Victoria Park</option>
+                <option value='Viveash'>Viveash</option>
+                <option value='Waikiki'>Waikiki</option>
+                <option value='Walliston'>Walliston</option>
+                <option value='Wandi'>Wandi</option>
+                <option value='Wangara'>Wangara</option>
+                <option value='Wanneroo'>Wanneroo</option>
+                <option value='Warnbro'>Warnbro</option>
+                <option value='Warwick'>Warwick</option>
+                <option value='Waterford'>Waterford</option>
+                <option value='Watermans Bay'>Watermans Bay</option>
+                <option value='Wattle Grove'>Wattle Grove</option>
+                <option value='Wattleup'>Wattleup</option>
+                <option value='Wellard'>Wellard</option>
+                <option value='Welshpool'>Welshpool</option>
+                <option value='Wembley'>Wembley</option>
+                <option value='Wembley Downs'>Wembley Downs</option>
+                <option value='West Leederville'>West Leederville</option>
+                <option value='West Perth'>West Perth</option>
+                <option value='West Swan'>West Swan</option>
+                <option value='Westfield'>Westfield</option>
+                <option value='Westminster'>Westminster</option>
+                <option value='Whitby'>Whitby</option>
+                <option value='White Gum Valley'>White Gum Valley</option>
+                <option value='Whiteman'>Whiteman</option>
+                <option value='Willagee'>Willagee</option>
+                <option value='Willetton'>Willetton</option>
+                <option value='Wilson'>Wilson</option>
+                <option value='Winthrop'>Winthrop</option>
+                <option value='Woodbridge'>Woodbridge</option>
+                <option value='Woodlands'>Woodlands</option>
+                <option value='Woodvale'>Woodvale</option>
+                <option value='Wooroloo'>Wooroloo</option>
+                <option value='Wungong'>Wungong</option>
+                <option value='Yanchep'>Yanchep</option>
+                <option value='Yangebup'>Yangebup</option>
+                <option value='Yokine'>Yokine</option>
+            </select>
+            <button id="filterButton">Filter Users</button>    
+            <div class="tables">
                 <div class="tables">
-                    <table>
+                    <table id="UsersTable">
                         <thead>
-                            <tr>
+                            <tr></tr>
                                 <th>Rank</th>
                                 <th>Name</th>
                                 <th>Points</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {% for player in players %}
-                            <tr>
-                                <td>{{ loop.index }}</td>
-                                <td>{{ player.name }}</td>
-                                <td>{{ player.points }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
+                        <tbody></tbody>
                     </table>
-                </div>
-                <br>
-                <br>
             </div>
-        </div>
-        <script>
-            // Wait for the DOM to be fully loaded
-            document.addEventListener('DOMContentLoaded', function () {
-                // Select the logout link
-                var logoutLink = document.getElementById('logout');
-        
-                // Add a click event listener to the logout link
-                logoutLink.addEventListener('click', function (event) {
-                    // Prevent the default link behavior
-                    event.preventDefault();
-        
-                    // Show the logout confirmation alert
-                    var confirmLogout = confirm("Are you sure you want to log out?");
-                    if (confirmLogout) {
-                        // If the user confirms, redirect to the logout URL
-                        window.location.href = logoutLink.getAttribute('href');
+        <br>
+        <br>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        loadAllUsers();
+        $('#filterButton').click(function() {
+            filterUsers();
+        });
+    });
+
+    function loadAllUsers() {
+        filterUsers(); 
+    }
+
+    function filterUsers() {
+        var city = $('#city').val();
+        var suburb = $('#suburb').val();
+
+        $.ajax({
+            url: '/filter_users',
+            type: 'GET',
+            data: {
+                city: city, 
+                suburb: suburb
+            },
+            success: function(response) {
+                var usersTable = $('#UsersTable tbody');
+                usersTable.empty(); 
+
+                $.each(response, function(index, user) {
+                    var row = $('<tr>');
+                    row.append('<td>' + user.rank + '</td>'); // Display rank
+                    row.append('<td>' + user.name + '</td>'); // Display name
+                    row.append('<td>' + user.points + '</td>'); // Display points
+                    
+                    if (user.user_id == '{{ current_user.id }}') {
+                        row.addClass('highlighted'); // Add the 'highlighted' class to the row
                     }
+
+                    usersTable.append(row);
                 });
-            });
-        </script>
-    </body>
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+    } 
+</script>
+<script>
+    // Wait for the DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function () {
+        // Select the logout link
+        var logoutLink = document.getElementById('logout');
+
+        // Add a click event listener to the logout link
+        logoutLink.addEventListener('click', function (event) {
+            // Prevent the default link behavior
+            event.preventDefault();
+
+            // Show the logout confirmation alert
+            var confirmLogout = confirm("Are you sure you want to log out?");
+            if (confirmLogout) {
+                // If the user confirms, redirect to the logout URL
+                window.location.href = logoutLink.getAttribute('href');
+            }
+        });
+    });
+</script>
+</body>
 </html>
