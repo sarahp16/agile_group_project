@@ -13,6 +13,7 @@
                 <div class="logo">
                     <img src="{{ url_for('static', filename = 'css/logo.png') }}" alt="Logo" width="230" height="60">
                 </div>
+                <!--Sidebar options-->
                 <div class="menu">
                     <a href="user" class="active">Home</a>
                     <a href="play">Play Now</a>
@@ -21,12 +22,12 @@
                     <a href="logout" id="logout">Log Out</a>
                 </div>
             </div>
-
             <div class="main-content">
                 <div class="header">
                     <h1>Dashboard</h1><br>
                     <p>Welcome, {{ name }}!</p>
                 </div>
+                <!--User statistics -->
                 <div class="stats">
                     <div class="stat-item">
                         <p>Your Points</p>
@@ -46,6 +47,7 @@
                     </div>
                 </div>
                 <br>
+                <!--Text Content-->
                 <div class="header">
                     <h1>About Us</h1>
                 </div>
@@ -61,16 +63,12 @@
             </div>
         </div>
         <script>
-            // Wait for the DOM to be fully loaded
+            // Logout alert confirmation
             document.addEventListener('DOMContentLoaded', function () {
-                // Select the logout link
                 var logoutLink = document.getElementById('logout');
-        
-                // Add a click event listener to the logout link
                 logoutLink.addEventListener('click', function (event) {
                     // Prevent the default link behavior
                     event.preventDefault();
-        
                     // Show the logout confirmation alert
                     var confirmLogout = confirm("Are you sure you want to log out?");
                     if (confirmLogout) {
