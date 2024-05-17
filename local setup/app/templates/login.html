@@ -15,26 +15,26 @@
       <h2>Login</h2>
       <form method="POST">
         {{ form.hidden_tag() }}
-
+        <!--Get user email-->>
         <div class="form-group">
             {{ form.email.label(class="form-label") }}
             {{ form.email(class="form-control", placeholder="Email") }}
         </div>
-
+        <!--Get user password-->>
         <div class="form-group">
           {{ form.password.label(class="form-label") }}
           {{ form.password(class="form-control", placeholder="Password") }}
         </div> <br>
-
+        <!--Submit-->>
         <div class="form-group">
             {{ form.submit(class="btn") }}
         </div>
-
+        <!--Redirect to register, if no account-->>
         <div class="form-group">
           <h3> Don't have an account yet?</h3> <br>
           <a href="{{ url_for('register') }}" class="btn">Register</a>
         </div>
-
+        <!--Flash messages if incorrect login-->>
         {% with messages = get_flashed_messages() %}
           {% if messages %}
             <div class="flash-messages-login">
