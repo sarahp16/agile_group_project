@@ -1,3 +1,4 @@
+/* Positioning of home button top right corner */
 .home-button {
     position: absolute;
     top: 10px;
@@ -27,6 +28,7 @@ body {
     background-attachment: fixed;
 }
 
+/* General form container*/
 .container {
     background-color: rgba(78, 124, 140, 0.9);
     border-radius: 10px;
@@ -35,20 +37,20 @@ body {
     width: 500px; 
 }
 
-.container.long.register {
-    background-color: rgba(78, 124, 140, 0.9);
-    border-radius: 10px;
-    padding: 50px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    width: 500px; 
-    margin: 500px auto 50px; 
+.container h1 {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-.container.long.register h4 {
-    color:#fff;
-    font-size: 15px;
+.container h2 {
+    color: #fff;
+    text-align: left;
+    margin-bottom: 30px;
 }
 
+
+/* Long version form container*/
 .container.long {
     background-color: rgba(78, 124, 140, 0.9);
     border-radius: 10px;
@@ -64,18 +66,23 @@ body {
     text-align: center;
 }
 
-.container h1 {
-    color: #fff;
-    text-align: center;
-    margin-bottom: 10px;
+
+/* Formatting specific to register*/
+.container.long.register {
+    background-color: rgba(78, 124, 140, 0.9);
+    border-radius: 10px;
+    padding: 50px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 500px; 
+    margin: 500px auto 50px; 
 }
 
-.container h2 {
-    color: #fff;
-    text-align: left;
-    margin-bottom: 30px;
+.container.long.register h4 {
+    color:#fff;
+    font-size: 15px;
 }
 
+/* Formatting for alerts, select, dropdowns and flashes*/
 select {
     margin-bottom: 10px;
     font-size: 15px;
@@ -129,6 +136,7 @@ select {
     border-color: #447539;
 }
 
+/* Button formatting*/
 .btn {
     background-color: #447539;
     color: #fff;
