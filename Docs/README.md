@@ -106,3 +106,5 @@ CREATE: Create contains a form for users to create their own quest. This quest w
 LEADERBOARD: the Leaderboard function allows users to see their ranking of all users registered in the app. This is their ranking based on points earned from completing quests. The leaderboard can be filtered on city and suburb to see the leaderboard of specific cities and suburbs. 
 
 Finally, at all points, the user can return to home which will be their user dashboard. Similarly, the user can also choose to Log Out which will return them to the initial homepage asking the user to login or register. 
+
+Happy questing!
