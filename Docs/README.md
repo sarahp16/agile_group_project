@@ -14,7 +14,30 @@ Our application (GeoQuester) is an exciting game where you are able to explore t
 
 ## Architecture
 
-Explain client side (what users can push) and server side (what server pushes), explain DBs too.
+Client-side architecture refers to the part of an application or system that runs on the client's device which is responsible for rendering the user interface and handling user interactions.
+
+Server-side architecture refers to the part of an application or system that runs on the server, handling requests from clients, processing data, and generating responses to send back to clients.
+
+Below, details the client-side and server-side architectures present during different stages of the application's running:
+
+### Registering
+
+For registering, the main components involve HTML, CSS, Flask forms, routes and interactions with the database. The HTML and CSS handle the client-side presentation of the registration form, this is the styling and layout of the register page. Once the user inputs their information into the HTML and clicks the submit button (styled with CSS), this is loaded into the server-side Flask form which validates the form data. Once validated the /register route handles the HTTP client request, rendering the registration form, redirecting to another page and finally processes the form submission to send that information to the correct table in the database, the UsersInfo model. The sqlite database stores the user registration information in the UsersInfo model defined in the models.py file. 
+
+### Logging In
+
+For logging in, the main components involve HTML, CSS, Flask forms, routes and interactions with the database. The HTML and CSS handle the client-side presentation of the login form, this is the styling and layout of the login page. Once the user inputs their information into the HTML and clicks the submit button (styled with CSS), this is loaded into the server-side Flask form which validates the form data. Once validated the /login route handles the HTTP client request, rendering the login form, redirecting to another page and finally processes the form submission to send that information to the correct table in the database, the UsersInfo model. The route uses database queries to confirm that the user email and password are correct before redirecting to the user dashboard. If the email or password is incorrect, the user stays on the login page rather than being redirected.
+
+### Create a Quest 
+
+For creating a quest, the main components involve HTML templates, CSS, Flask forms, routes and interactions with the database. The HTML template and CSS handle the client-side presentation of the create a quest form. The HTML template renders the structure of the form where users can input quest details. The CSS styles the quest creation through visual elements. Once the user inputs the quest data into the form and clicks the submit button, this information is sent to the Flask form. The Quest Form is a server-side architecture whch handles the form validation and processing on the server side. When this form validates, the data is sent to the route. The server-side architecture of the /create route is responsible for handling the HTTP requests and sends the data to the corresponding Quests and HintsSolutions models of the sqlite database.
+
+### Filtering for Quests/Leaderboard
+
+For filtering for quests or on the leaderboard, the main components involve HTML templates, CSS, JavaScript and flask routes which interact with the database. The HTML template and CSS handle the client-side presentation of play/leaderboard page. The HTML template renders the structure of the form where users can input quest details. The CSS styles the quest creation through visual elements. The JavaScript code in the HTML acts as a client-side architecture which listens for changes in the filter input and sens an AJAX request to the server to get filtered quest and leaderboard data. In the server-side flask route, the route handles the AJAX request, querying the database based on the inputted filters and returns the filtered data as a JSON response to be displayed to the user. 
+
+### Playing a Quest
+For filtering for quests or on the leaderboard, the main components involve HTML templates, CSS and flask routes which interact with the database. The HTML template and CSS handle the client-side presentation of quest page. The HTML template renders the structure of the form where users can input quest details. The CSS styles the quest creation through visual elements. On clicking the check button, the server-side route handles both get and post requests for playing a quest. The check button is a POST request which submits the quest's answer to be processed by the server. In the route, it processes correct and incorrect answers with correct answers getting the next hint and rendering that quest page, whereas if the answer is incorrect, the number of hearts decreases and the page does not progress to the next hint. This is repeated until the quest is completed (i.e., the user has answered all 5 questions), where the points are added to the user's points and the user's id and quest id is pushed to the Completed Quests model in the sqlite database, so that the completed quest will no longer show in that user's available quests table.
 
 ## Installation
 
@@ -83,9 +106,3 @@ CREATE: Create contains a form for users to create their own quest. This quest w
 LEADERBOARD: the Leaderboard function allows users to see their ranking of all users registered in the app. This is their ranking based on points earned from completing quests. The leaderboard can be filtered on city and suburb to see the leaderboard of specific cities and suburbs. 
 
 Finally, at all points of the app, the user can return to home which will be their user dashboard. Similarly, the user can also choose to Log Out which will return them to the initial homepage asking the user to login or register. 
-
-
-
-
-
-
