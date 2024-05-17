@@ -44,6 +44,11 @@ body {
     margin: 500px auto 50px; 
 }
 
+.container.long.register h4 {
+    color:#fff;
+    font-size: 15px;
+}
+
 .container.long {
     background-color: rgba(78, 124, 140, 0.9);
     border-radius: 10px;
