@@ -95,15 +95,21 @@ To launch the flask application, run the following command in the WSL terminal. 
 
 ## Usage
 
-Once the flask app is opened from the url given by the WSL terminal after running the command "flask run", the user will see the initial homepage with either login or register options. As a first time user, you should click register to create an account filling in all options with correct information and creating a strong password. Once the user's account is registered, the user will need to login in with their selected email and password. Alternatively, you can use the registered Alan Turing account with email: alan.turing@cs.com, and password: genius
+Once the flask app is opened from the url given by the WSL terminal after running the command "flask run", the user will see the initial homepage with either login or register options. As a first time user, you should click register to create an account filling in all options with correct information and creating a strong password. Once the user's account is registered, the user will need to login in with their selected email and password. Alternatively, you can use the registered Alan Turing account with email: alan.turing@cs.com, and password: genius.
 
 This will direct the user to their user dashboard with a sidebar of the options available to them. Within their dashboard will be their points earned from completing quests, rank in their city, number of quests completed and number of quests created. The sidebar contains the main functionality of the app with three distinct options for the user: Play, Create and Leaderboard. These features are explained below:
 
-PLAY: Play contains all the available quests for a user to play. This does not include the quests that the user has already completed or the quests that user created. The user is able to use the filters to specify where, how long and how hard their desired quest is to filter through available quests. By clicking the name of the quest, users are redirected to play the quest (which has 5 questions) and only when the current question is answered correctly will the user be able to move onto the next question. There is 3 lives available for each question, which earns different points for the user. 
+###PLAY
 
-CREATE: Create contains a form for users to create their own quest. This quest will be available for other users of the app, but not the user who created it. All boxes must be filled to submit a quest.
+Play contains all the available quests for a user to play. This does not include the quests that the user has already completed or the quests that user created. The user is able to use the filters to specify where, how long and how hard their desired quest is to filter through available quests. By clicking the name of the quest, users are redirected to play the quest (which has 5 questions) and only when the current question is answered correctly will the user be able to move onto the next question. There is 3 lives available for each question, which earns different points for the user. 
 
-LEADERBOARD: the Leaderboard function allows users to see their ranking of all users registered in the app. This is their ranking based on points earned from completing quests. The leaderboard can be filtered on city and suburb to see the leaderboard of specific cities and suburbs. 
+###CREATE
+
+Create contains a form for users to create their own quest. This quest will be available for other users of the app, but not the user who created it. All boxes must be filled to submit a quest.
+
+###LEADERBOARD
+
+The Leaderboard function allows users to see their ranking of all users registered in the app. This is their ranking based on points earned from completing quests. The leaderboard can be filtered on city and suburb to see the leaderboard of specific cities and suburbs. 
 
 Finally, at all points, the user can return to home which will be their user dashboard. Similarly, the user can also choose to Log Out which will return them to the initial homepage asking the user to login or register. 
 
