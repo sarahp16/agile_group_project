@@ -183,10 +183,10 @@ label{
     background-color: #e5e5e5;
 }
 
-.tables tbody tr.highlighted {
-    background-color: #4d7c8c;
-}
-
 .tables tbody tr:hover {
     background-color: #9c9c9c61;
+}
+
+.tables tbody tr.highlighted {
+    background-color: #4d7c8c;
 }
