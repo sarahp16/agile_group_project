@@ -1,3 +1,4 @@
+/* Aoplies generally to all content*/
 body, html {
     padding: 0;
     font-family: 'Roboto', sans-serif; 
@@ -35,6 +36,7 @@ body, html {
 
 }
 
+/* Sidebar Content and Animations*/
 .menu {
     padding-top: 20px;
     font-size: 18px;
@@ -56,6 +58,7 @@ body, html {
     background-color: #d6cdc7;
 }
 
+/* Main Text + Content*/
 .main-content {
     flex: 1;
     padding: 20px;
@@ -95,6 +98,7 @@ body, html {
     border-radius: 5px;
 }
 
+/* Select arrows and dropdowns*/
 select {
     margin-bottom: 10px;
     font-size: 15px; /* Larger font size */
@@ -121,6 +125,8 @@ label{
 
 }
 
+/* Statistic squares*/
+
 .stats {
     display: flex;
     justify-content: flex-start;
@@ -144,6 +150,7 @@ label{
     color: #333;
 }
 
+/* Transparent message bubbles*/
 .message {
     background-color: #f0f0f0;
     padding-top: 10px;
@@ -152,6 +159,8 @@ label{
     padding-bottom: 20px;
     border-radius: 5px;
 }
+
+/* Table formatting for play and leaderboard */
 
 .tables {
     margin-top: 20px;
