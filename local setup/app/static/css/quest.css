@@ -21,6 +21,8 @@ body {
     position: relative; /* Required for the heart count to be positioned relative to this */
 }
 
+
+
 h2 {
     margin-top: 0;
     font-size: 2.5em; /* Larger font size */
@@ -111,9 +113,7 @@ button:hover {
 }
 
 .flash-messages {
-    position: absolute;
-    top: 287px;
-    left: 697px;
+    position: relative;
     z-index: 1000; /* Adjust the z-index as needed to ensure the messages appear above other content */
 }
 
@@ -126,3 +126,4 @@ button:hover {
     color:#0f4d4d;
     font-weight: bold;
 }
+
