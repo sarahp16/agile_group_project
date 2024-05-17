@@ -18,6 +18,15 @@
                 <input type="hidden" name="quest_id" value="{{ quest_id }}">
                 <input type="hidden" name="hint_id" value="{{ hint_id }}">
                 <label for="answer">Your Answer:</label>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div class="flash-messages">
+                            {% for message in messages %}
+                                <div class="flash-message {{ message.category }}">{{ message }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
                 <input type="text" id="answer" name="answer" required>
                 <button type="submit">Check</button>
             </form>
@@ -26,15 +35,6 @@
                 <span>{{ heart_count }}</span>
             </div>
         </div>
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <div class="flash-messages">
-                    {% for message in messages %}
-                        <div class="flash-message {{ message.category }}">{{ message }}</div>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        {% endwith %}
 
         <script>
             // Wait for the DOM to be fully loaded
@@ -47,7 +47,7 @@
                     // Set a timeout to remove the flash message after 2 seconds
                     setTimeout(function () {
                         message.remove(); // Remove the flash message from the DOM
-                    }, 1000); // Adjust the time in milliseconds (2 seconds = 2000 milliseconds)
+                    }, 2000); // Adjust the time in milliseconds (2 seconds = 2000 milliseconds)
                 });
             });
         </script>
