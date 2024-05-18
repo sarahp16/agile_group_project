@@ -3,7 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{{ url_for('static', filename = 'css/forms.css') }}">
+        <title>Create a Quest</title>
+        <link rel="stylesheet" href="static/css/forms.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
 
         <script>
@@ -18,9 +19,7 @@
 
     </head>
     <body>
-        <a href="/user">
-            <button class="back-to-home">Home</button>
-        </a>
+        <button class="back-to-home" onclick="window.location.href='/user'">Home</button>
         <br>
         <div class="container long">
             <h1>Create a Quest!</h1>
