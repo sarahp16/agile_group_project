@@ -4,14 +4,14 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Play</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename = 'css/base.css') }}">
+        <link rel="stylesheet" href="/static/css/base.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     </head>
     <body>
         <!--Sidebar options-->>
         <div class="sidebar">
             <div class="logo">
-                <img src="{{ url_for('static', filename = 'css/logo.png') }}" alt="Logo" width="230" height="60">
+                <img src="/static/css/logo.png" alt="Logo" width="230" height="60">
             </div>
             <div class="menu">
                 <a href="user">Home</a>
@@ -25,11 +25,11 @@
             <div class="header">
                 <h1>Welcome to the Play page!</h1><br>
                 <p>To see all quests please press "Filter Quests". Then, pick a quest!</p>
-            <div>
+            </div>
             <div class="header">
-                <h2>How to Play?</h1><br>
+                <h2>How to Play?</h2><br>
                 <p>Each quest will contain 5 questions. These questions will require you to move around your environment and find solutions! You have 3 attempts for each question. Points are scored according to number of lives used. 3 lives remaining scores you 5 points, 2 lives remaining scores you 3 points and 1 life remaining scores you 1 point. No points are scored if all lives are used. You will only advance to the next question if you answer correctly. Happy questing!</p>
-            <div>
+            </div>
             <!--User Quest Filters-->>
             <div class="message">
                 <!--Filter by duration-->>
@@ -426,6 +426,7 @@
                     </table>
                 </div>
             </div>
+        </div>
             <!--Functions for filtration-->>
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script>
@@ -473,7 +474,6 @@
                     });
                 }
             </script>
-        </div>
         <script>
             // Logout alert function
             document.addEventListener('DOMContentLoaded', function () {
