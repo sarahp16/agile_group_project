@@ -4,16 +4,14 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Login</title>
-      <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+      <link rel="stylesheet" href="static/css/forms.css">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
   </head>
   <body>
-    <a href="/base">
-      <button class="home-button">Home</button>
-    </a> 
+    <button class="home-button" onclick="window.location.href='/base'">Home</button>
     <div class="container">
       <h2>Login</h2>
-      <form method="POST">
+      <form method="POST" action="/login">
         {{ form.hidden_tag() }}
         <!--Get user email-->
         <div class="form-group">
@@ -32,7 +30,7 @@
         <!--Redirect to register, if no account-->
         <div class="form-group">
           <h3> Don't have an account yet?</h3> <br>
-          <a href="{{ url_for('register') }}" class="btn">Register</a>
+          <a href="/register" class="btn">Register</a>
         </div>
         <!--Flash messages if incorrect login-->
         {% with messages = get_flashed_messages() %}
