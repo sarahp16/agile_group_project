@@ -4,28 +4,25 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>GeoQuester</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename = 'css/homepage.css') }}">
+        <link rel="stylesheet" href="/static/css/homepage.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     </head>
     <body>
         <div class="container">
             <header>
                 <!--Image for sidebar logo-->
-                <img src="{{ url_for('static', filename = 'css/logo.png') }}" alt="Logo" width="700" height="180">
+                <img src="/static/css/logo.png" alt="Logo" width="700" height="180">
             </header>
             <main>
                 <section class="intro">
                     <h2>Welcome to GeoQuester</h2>
                     <p>GeoQuester is an exciting game where you explore the world through challenging quests.</p>
                 </section>
-                <section class="buttons">
-                    <a href="/login">
-                        <button>Login</button>
-                    </a>
-                    <a href="/register">
-                        <button>Register</button>
-                    </a>
-                </section>
+                <div class="buttons">
+                    <button class="login" onclick="window.location.href='/login'">Login</button>
+
+                    <button class="register" onclick="window.location.href='/register'">Register</button>
+                </div>
             </main>
         </div>
     </body>
