@@ -4,14 +4,14 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Leaderboard</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename = 'css/base.css') }}">
+        <link rel="stylesheet" href="/static/css/base.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     </head>
     <body>
     <div class="dashboard">
         <div class="sidebar">
             <div class="logo">
-                <img src="{{ url_for('static', filename = 'css/logo.png') }}" alt="Logo" width="230" height="60">
+                <img src="/static/css/logo.png" alt="Logo" width="230" height="60">
             </div>
             <!--Sidebar options-->               
             <div class="menu">
@@ -31,7 +31,7 @@
             <div class="message">
                 <!--Filter options for city-->               
                 <label for="city">Select City:</label>
-                <select name="duration" id="duration">
+                <select name="city" id="city">
                     <option value="">All Cities</option>
                     <option value="Perth">Perth</option>
                 </select>
@@ -398,7 +398,7 @@
                     <div class="tables">
                         <table id="UsersTable">
                             <thead>
-                                <tr></tr>
+                                <tr>
                                     <th>Rank</th>
                                     <th>Name</th>
                                     <th>Points</th>
@@ -475,5 +475,6 @@
                 });
             </script>
         </div>
+    </div>
     </body>
 </html>
