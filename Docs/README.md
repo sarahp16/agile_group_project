@@ -45,7 +45,7 @@ For launching our application, the following instructions provide a comprehensiv
 
 ### Step 1: Download All Files onto the Local Computer into a Folder
 
-From Github install all game files into a folder on the local computer before opening a WSL terminal of the folder. 
+From Github download the "local_setup" folder on your computer and open a WSL terminal in the folder. 
 
 In the WSL terminal ensure your WSL is up to date by running the following commands:
 
